@@ -1,0 +1,3 @@
+﻿1 - Class entidades: crear las entidades + atributos
+2 - Class Logica: crear la logica, conexion a base de datos
+3 - llamar a los metodos en el frmrpincipal
