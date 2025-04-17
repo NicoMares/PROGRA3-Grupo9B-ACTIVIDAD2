@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Actividad2.Logica
 {
-    internal class EliminarArticulo
+    internal class L_EliminarArticulo
     {
     }
 }

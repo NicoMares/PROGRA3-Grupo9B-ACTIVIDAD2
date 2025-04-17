@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace Actividad2
 {
-     class AgregarArticulo
+     class L_AgregarArticulo
     {
 
         public void AgregarArt(E_Articulo articulo)
