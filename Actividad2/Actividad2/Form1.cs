@@ -22,7 +22,7 @@ namespace Actividad2
         private void Form1_Load(object sender, EventArgs e)
         {
             L_Articulo articulo = new L_Articulo();
-            dgvArticulos.DataSource = articulo.listar();
+            dgvArticulos.DataSource = articulo.Listar();
 
             cboCampo.Items.Add("Codigo");
             cboCampo.Items.Add("Nombre");
