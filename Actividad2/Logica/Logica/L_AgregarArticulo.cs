@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using Entidades;
 
-namespace Actividad2
+namespace Logica
 {
-     class L_AgregarArticulo
+     public class L_AgregarArticulo
     {
 
         public void AgregarArt(E_Articulo articulo)

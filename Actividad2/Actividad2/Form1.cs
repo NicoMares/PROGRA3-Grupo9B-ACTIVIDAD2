@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Logica;
+
 
 namespace Actividad2
 {
@@ -20,7 +22,7 @@ namespace Actividad2
         private void Form1_Load(object sender, EventArgs e)
         {
             L_Articulo articulo = new L_Articulo();
-            dgvArticulos.DataSource = articulo.listar();
+            dgvArticulos.DataSource = articulo.Listar();
 
             cboCampo.Items.Add("Codigo");
             cboCampo.Items.Add("Nombre");
@@ -64,6 +66,21 @@ namespace Actividad2
             }
 
             
+
+        }
+
+        private void blbRestablecer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
 
         }
     }
