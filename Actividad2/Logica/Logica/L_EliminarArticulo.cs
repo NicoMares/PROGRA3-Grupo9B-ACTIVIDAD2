@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Actividad2.Logica
+namespace Logica
 {
-    internal class L_EliminarArticulo
+    public class L_EliminarArticulo
     {
     }
 }

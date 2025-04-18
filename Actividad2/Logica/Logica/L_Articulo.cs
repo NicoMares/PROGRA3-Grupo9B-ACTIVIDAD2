@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Xml.Linq;
-using Actividad2.Entidades;
+using Entidades;
 
-namespace Actividad2
+namespace Logica
 {
-    class L_Articulo
+    public class L_Articulo
     {
         
 
@@ -25,11 +25,10 @@ namespace Actividad2
             try
             {
                 //Conexion para base de datos con declaracion de usuario especifico con login de sql
+                conexion.ConnectionString = "Server=ULARIAGA-BRAIAN\\LOCALHOST; Database= CATALOGO_P3_DB; User Id= sa; Password=Super123.adm ";
 
-                /// conexion.ConnectionString = "Server=ULARIAGA-BRAIAN\\LOCALHOST; Database= CATALOGO_P3_DB; User Id= sa; Password=Super123.adm "; /// Brian
-
-                conexion.ConnectionString = "Server=.\\SQLEXPRESS;  Database= CATALOGO_P3_DB; integrated security= true"; /// Andres & Nico
-                //Conexion para base de datos local con login de wind
+               //Conexion para base de datos local con login de wind
+               //conexion.ConnectionString = "Server=.\\SQLEXPRESS;  Database= CATALOGO_P3_DB; integrated security= true"; /// Andres & Nico
 
                 comando.CommandType = System.Data.CommandType.Text; // Tipo de comando a ajecutar en el SQL, text(query), storeproceduire(SP)
                 comando.CommandText = "select a.Codigo, a.Nombre, a.Descripcion, c.Descripcion Categoria, m.Descripcion Marca from ARTICULOS a left join CATEGORIAS c on c.Id = a.IdCategoria left join MARCAS m on m.Id = a.IdMarca"; //Declaramos el query

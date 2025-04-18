@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Actividad2.Entidades
+namespace Entidades
 {
-     class E_Marca
+    public class E_Marca
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }

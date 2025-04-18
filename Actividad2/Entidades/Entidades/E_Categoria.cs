@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Actividad2.Entidades
+namespace Entidades
 {
-     class E_Categoria
+    public class E_Categoria
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }
