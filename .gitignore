@@ -1,5 +1,50 @@
-<<<<<<< Updated upstream
-*.vsidx
-=======
+# Compilación
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+*.cache
+*.log
+
+# Visual Studio
 .vs/
->>>>>>> Stashed changes
+*.user
+*.suo
+*.sln.docstates
+*.VC.db
+*.VC.opendb
+
+# Paquetes NuGet
+*.nupkg
+packages/
+*.snupkg
+
+# Publicaciones temporales
+publish/
+TestResults/
+*.appx
+*.appxbundle
+*.msix
+*.msixbundle
+
+# Config local
+*.userprefs
+*.dbmdl
+*.sdf
+*.bak
+*.old
+*.orig
+*.tmp
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de entorno
+*.env
+
+# Rider (JetBrains, si usás ReSharper o Rider IDE)
+.idea/
+*.sln.iml
