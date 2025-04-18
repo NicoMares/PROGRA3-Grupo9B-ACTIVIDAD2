@@ -1,3 +1,26 @@
+<<<<<<< Updated upstream
+=======
+D:\bkp\UTN\2025 Segundo año\Programacion III\Actividad 2\Actividad2\Actividad2\bin\Debug\Actividad2.exe.config
+D:\bkp\UTN\2025 Segundo año\Programacion III\Actividad 2\Actividad2\Actividad2\bin\Debug\Actividad2.exe
+D:\bkp\UTN\2025 Segundo año\Programacion III\Actividad 2\Actividad2\Actividad2\bin\Debug\Actividad2.pdb
+D:\bkp\UTN\2025 Segundo año\Programacion III\Actividad 2\Actividad2\Actividad2\obj\Debug\Actividad2.csproj.AssemblyReference.cache
+D:\bkp\UTN\2025 Segundo año\Programacion III\Actividad 2\Actividad2\Actividad2\obj\Debug\Actividad2.Form1.resources
+D:\bkp\UTN\2025 Segundo año\Programacion III\Actividad 2\Actividad2\Actividad2\obj\Debug\Actividad2.Properties.Resources.resources
+D:\bkp\UTN\2025 Segundo año\Programacion III\Actividad 2\Actividad2\Actividad2\obj\Debug\Actividad2.csproj.GenerateResource.cache
+D:\bkp\UTN\2025 Segundo año\Programacion III\Actividad 2\Actividad2\Actividad2\obj\Debug\Actividad2.csproj.CoreCompileInputs.cache
+D:\bkp\UTN\2025 Segundo año\Programacion III\Actividad 2\Actividad2\Actividad2\obj\Debug\Actividad2.exe
+D:\bkp\UTN\2025 Segundo año\Programacion III\Actividad 2\Actividad2\Actividad2\obj\Debug\Actividad2.pdb
+C:\Users\Usuario1\Documents\GitHub\PROGRA3-Grupo9B-ACTIVIDAD2\Actividad2\Actividad2\bin\Debug\Actividad2.exe.config
+C:\Users\Usuario1\Documents\GitHub\PROGRA3-Grupo9B-ACTIVIDAD2\Actividad2\Actividad2\bin\Debug\Actividad2.exe
+C:\Users\Usuario1\Documents\GitHub\PROGRA3-Grupo9B-ACTIVIDAD2\Actividad2\Actividad2\bin\Debug\Actividad2.pdb
+C:\Users\Usuario1\Documents\GitHub\PROGRA3-Grupo9B-ACTIVIDAD2\Actividad2\Actividad2\obj\Debug\Actividad2.csproj.AssemblyReference.cache
+C:\Users\Usuario1\Documents\GitHub\PROGRA3-Grupo9B-ACTIVIDAD2\Actividad2\Actividad2\obj\Debug\Actividad2.Form1.resources
+C:\Users\Usuario1\Documents\GitHub\PROGRA3-Grupo9B-ACTIVIDAD2\Actividad2\Actividad2\obj\Debug\Actividad2.Properties.Resources.resources
+C:\Users\Usuario1\Documents\GitHub\PROGRA3-Grupo9B-ACTIVIDAD2\Actividad2\Actividad2\obj\Debug\Actividad2.csproj.GenerateResource.cache
+C:\Users\Usuario1\Documents\GitHub\PROGRA3-Grupo9B-ACTIVIDAD2\Actividad2\Actividad2\obj\Debug\Actividad2.csproj.CoreCompileInputs.cache
+C:\Users\Usuario1\Documents\GitHub\PROGRA3-Grupo9B-ACTIVIDAD2\Actividad2\Actividad2\obj\Debug\Actividad2.exe
+C:\Users\Usuario1\Documents\GitHub\PROGRA3-Grupo9B-ACTIVIDAD2\Actividad2\Actividad2\obj\Debug\Actividad2.pdb
+>>>>>>> Stashed changes
 D:\bkp\UTN\2025 Segundo año\Programacion III\Actividad 2\PROGRA3-Grupo9B-ACTIVIDAD2\Actividad2\Actividad2\bin\Debug\Actividad2.exe.config
 D:\bkp\UTN\2025 Segundo año\Programacion III\Actividad 2\PROGRA3-Grupo9B-ACTIVIDAD2\Actividad2\Actividad2\bin\Debug\Actividad2.exe
 D:\bkp\UTN\2025 Segundo año\Programacion III\Actividad 2\PROGRA3-Grupo9B-ACTIVIDAD2\Actividad2\Actividad2\bin\Debug\Actividad2.pdb
