@@ -24,9 +24,9 @@ namespace Actividad2
             try
             {
                 //Conexion para base de datos con declaracion de usuario especifico con login de sql
-                //conexion.ConnectionString = "Server=ULARIAGA-BRAIAN\\LOCALHOST; Database= CATALOGO_P3_DB; User Id= sa; Password=Super123.adm ";
+                conexion.ConnectionString = "Server=ULARIAGA-BRAIAN\\LOCALHOST; Database= CATALOGO_P3_DB; User Id= sa; Password=Super123.adm ";
                 //Conexion para base de datos local con login de wind
-                conexion.ConnectionString = "Server=.\\SQLEXPRESS;  Database= CATALOGO_P3_DB; integrated security= true"; 
+                //conexion.ConnectionString = "Server=.\\SQLEXPRESS;  Database= CATALOGO_P3_DB; integrated security= true"; 
                 comando.CommandType = System.Data.CommandType.Text; // Tipo de comando a ajecutar en el SQL, text(query), storeproceduire(SP)
                 comando.CommandText = "select Codigo, Nombre, Descripcion from ARTICULOS"; //Declaramos el query
                 comando.Connection = conexion; //Nos conectamos

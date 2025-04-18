@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\bkp\\UTN\\2025 Segundo a\u00F1o\\Programacion III\\Actividad 2\\PROGRA3-Grupo9B-ACTIVIDAD2\\Actividad2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7CAEF64A-85B2-437D-A183-1363936FC7A5}|Actividad2\\Actividad2.csproj|d:\\bkp\\utn\\2025 segundo a\u00F1o\\programacion iii\\actividad 2\\progra3-grupo9b-actividad2\\actividad2\\actividad2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CAEF64A-85B2-437D-A183-1363936FC7A5}|Actividad2\\Actividad2.csproj|solutionrelative:actividad2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CAEF64A-85B2-437D-A183-1363936FC7A5}|Actividad2\\Actividad2.csproj|d:\\bkp\\utn\\2025 segundo a\u00F1o\\programacion iii\\actividad 2\\progra3-grupo9b-actividad2\\actividad2\\actividad2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7CAEF64A-85B2-437D-A183-1363936FC7A5}|Actividad2\\Actividad2.csproj|solutionrelative:actividad2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CAEF64A-85B2-437D-A183-1363936FC7A5}|Actividad2\\Actividad2.csproj|d:\\bkp\\utn\\2025 segundo a\u00F1o\\programacion iii\\actividad 2\\progra3-grupo9b-actividad2\\actividad2\\actividad2\\logica\\l_articulo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CAEF64A-85B2-437D-A183-1363936FC7A5}|Actividad2\\Actividad2.csproj|solutionrelative:actividad2\\logica\\l_articulo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "L_Articulo.cs",
+              "DocumentMoniker": "D:\\bkp\\UTN\\2025 Segundo a\u00F1o\\Programacion III\\Actividad 2\\PROGRA3-Grupo9B-ACTIVIDAD2\\Actividad2\\Actividad2\\Logica\\L_Articulo.cs",
+              "RelativeDocumentMoniker": "Actividad2\\Logica\\L_Articulo.cs",
+              "ToolTip": "D:\\bkp\\UTN\\2025 Segundo a\u00F1o\\Programacion III\\Actividad 2\\PROGRA3-Grupo9B-ACTIVIDAD2\\Actividad2\\Actividad2\\Logica\\L_Articulo.cs",
+              "RelativeToolTip": "Actividad2\\Logica\\L_Articulo.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAqwBsAAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-18T01:38:54.591Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "D:\\bkp\\UTN\\2025 Segundo a\u00F1o\\Programacion III\\Actividad 2\\PROGRA3-Grupo9B-ACTIVIDAD2\\Actividad2\\Actividad2\\Form1.cs",
+              "RelativeDocumentMoniker": "Actividad2\\Form1.cs",
+              "ToolTip": "D:\\bkp\\UTN\\2025 Segundo a\u00F1o\\Programacion III\\Actividad 2\\PROGRA3-Grupo9B-ACTIVIDAD2\\Actividad2\\Actividad2\\Form1.cs*",
+              "RelativeToolTip": "Actividad2\\Form1.cs*",
+              "ViewState": "AQIAABsAAAAAAAAAAAAcwCgAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-18T01:34:12.19Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\bkp\\UTN\\2025 Segundo a\u00F1o\\Programacion III\\Actividad 2\\PROGRA3-Grupo9B-ACTIVIDAD2\\Actividad2\\Actividad2\\Form1.cs",
+              "RelativeDocumentMoniker": "Actividad2\\Form1.cs",
+              "ToolTip": "D:\\bkp\\UTN\\2025 Segundo a\u00F1o\\Programacion III\\Actividad 2\\PROGRA3-Grupo9B-ACTIVIDAD2\\Actividad2\\Actividad2\\Form1.cs [Dise\u00F1o]*",
+              "RelativeToolTip": "Actividad2\\Form1.cs [Dise\u00F1o]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-18T01:32:29.24Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

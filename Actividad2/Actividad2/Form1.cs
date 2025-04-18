@@ -21,6 +21,25 @@ namespace Actividad2
         {
             L_Articulo articulo = new L_Articulo();
             dgvArticulos.DataSource = articulo.listar();
+
+            cboCampo.Items.Add("Codigo");
+            cboCampo.Items.Add("Nombre");
+            cboCampo.Items.Add("Descripcion");
+               
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cboCriterio.Items.Clear();
+            cboCriterio.Items.Add("Contiene");
+            cboCriterio.Items.Add("Comienza con ");
+            cboCriterio.Items.Add("Termina con ");
+       
         }
     }
 }
