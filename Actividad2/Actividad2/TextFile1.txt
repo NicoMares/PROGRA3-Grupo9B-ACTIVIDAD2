@@ -1,3 +1,7 @@
-﻿1 - Class entidades: crear las entidades + atributos
-2 - Class Logica: crear la logica, conexion a base de datos
-3 - llamar a los metodos en el frmrpincipal
+﻿1 - Carpeta entidades: crear las entidades + atributos
+2 - Carpeta Logica: crear la logica, conexion a base de datos
+3 - En el frmrpincipal, instanciamos la class de logica y llamamos al metodo listar
+4- Si en la class tenes un ID que hace referencia  a otra tabla, tenemos que generar dichas clases.
+5- Carpeta entidades: Se generaron las nuevas clases Marca y Categoria
+6- En la class que tenemos el id de referencia generamos el atributo con el tipo de dato de la class correspondiente
+7- Para poder visualizar el tipo de dato tenemos que sobreescribir el  metodo tostring

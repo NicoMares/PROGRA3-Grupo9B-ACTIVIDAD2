@@ -48,3 +48,5 @@ desktop.ini
 # Rider (JetBrains, si usás ReSharper o Rider IDE)
 .idea/
 *.sln.iml
+/Actividad2/.vs/Actividad2/v17/.suo
+/Actividad2/.vs

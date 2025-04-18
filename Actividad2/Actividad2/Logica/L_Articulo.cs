@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Xml.Linq;
+using Actividad2.Entidades;
 
 namespace Actividad2
 {
@@ -24,11 +25,14 @@ namespace Actividad2
             try
             {
                 //Conexion para base de datos con declaracion de usuario especifico con login de sql
-                conexion.ConnectionString = "Server=ULARIAGA-BRAIAN\\LOCALHOST; Database= CATALOGO_P3_DB; User Id= sa; Password=Super123.adm ";
+
+                /// conexion.ConnectionString = "Server=ULARIAGA-BRAIAN\\LOCALHOST; Database= CATALOGO_P3_DB; User Id= sa; Password=Super123.adm "; /// Brian
+
+                conexion.ConnectionString = "Server=.\\SQLEXPRESS;  Database= CATALOGO_P3_DB; integrated security= true"; /// Andres & Nico
                 //Conexion para base de datos local con login de wind
-                //conexion.ConnectionString = "Server=.\\SQLEXPRESS;  Database= CATALOGO_P3_DB; integrated security= true"; 
+
                 comando.CommandType = System.Data.CommandType.Text; // Tipo de comando a ajecutar en el SQL, text(query), storeproceduire(SP)
-                comando.CommandText = "select Codigo, Nombre, Descripcion from ARTICULOS"; //Declaramos el query
+                comando.CommandText = "select a.Codigo, a.Nombre, a.Descripcion, c.Descripcion Categoria, m.Descripcion Marca from ARTICULOS a left join CATEGORIAS c on c.Id = a.IdCategoria left join MARCAS m on m.Id = a.IdMarca"; //Declaramos el query
                 comando.Connection = conexion; //Nos conectamos
 
                 conexion.Open(); // abrimos conexion
@@ -42,6 +46,10 @@ namespace Actividad2
                     aux.Codigo = (string)lector["Codigo"]; //Indicamos el objeto con el dato a leer y parseamos el dato ya que lo lee como obj
                     aux.Nombre = (string)lector["Nombre"];
                     aux.Descripcion = (string)lector["Descripcion"];
+                    aux.Marca = new E_Marca(); // instanciamos ya que marca es agregacion y no composicion | tambien se debio sobreescribir el tostring en la entidad
+                    aux.Marca.Descripcion = (string)lector["Marca"];
+                    aux.Categoria = new E_Categoria();// instanciamos ya que marca es agregacion y no composicion  | tambien se debio sobreescribir el tostring en la entidad
+                    aux.Categoria.Descripcion = (string)lector["Categoria"];
 
                     lista.Add(aux); // agregamos el objeto leido a la lista
 
@@ -58,6 +66,26 @@ namespace Actividad2
             }
 
 
+        }
+
+        public List <E_Articulo> Filtro(string campo, string criterio, string filtro)
+        {
+
+            List<E_Articulo> Lista_Articulo = new List<E_Articulo> ();
+            try
+            {
+
+                return Lista_Articulo;
+
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            throw new NotImplementedException();
         }
     }
 }
