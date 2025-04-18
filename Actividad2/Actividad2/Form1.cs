@@ -24,37 +24,17 @@ namespace Actividad2
 
             cboCampo.Items.Add("Codigo");
             cboCampo.Items.Add("Nombre");
-            cboCampo.Items.Add("Descripcion");
-<<<<<<< Updated upstream
-               
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-=======
-        }
-        private void cboCriterio_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-       
->>>>>>> Stashed changes
+            cboCampo.Items.Add("Descripcion");   
         }
 
         private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
             cboCriterio.Items.Clear();
-<<<<<<< Updated upstream
             cboCriterio.Items.Add("Contiene");
             cboCriterio.Items.Add("Comienza con ");
             cboCriterio.Items.Add("Termina con ");
        
-=======
-            cboCriterio.Items.Add("Comienza con ");
-            cboCriterio.Items.Add("Termina con ");
-            cboCriterio.Items.Add("Empieza con ");
-            cboCriterio.SelectedIndex = 0;
->>>>>>> Stashed changes
+
         }
     }
 }
