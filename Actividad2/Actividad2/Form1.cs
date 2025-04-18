@@ -29,11 +29,41 @@ namespace Actividad2
 
         private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ///
             cboCriterio.Items.Clear();
             cboCriterio.Items.Add("Contiene");
             cboCriterio.Items.Add("Comienza con ");
             cboCriterio.Items.Add("Termina con ");
        
+
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            /// filtro
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            /// buscar
+            L_Articulo articulo = new L_Articulo();
+
+            try
+            {
+                string Campo = cboCampo.SelectedItem.ToString();
+                string Criterio = cboCriterio.SelectedItem.ToString();
+                string Filtro = txtFiltro.Text;
+
+                dgvArticulos.DataSource = articulo.Filtro(Campo, Criterio, Filtro);                                 ///dgv Data Grid view
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            
 
         }
     }

@@ -24,9 +24,12 @@ namespace Actividad2
             try
             {
                 //Conexion para base de datos con declaracion de usuario especifico con login de sql
-                conexion.ConnectionString = "Server=ULARIAGA-BRAIAN\\LOCALHOST; Database= CATALOGO_P3_DB; User Id= sa; Password=Super123.adm ";
+
+                /// conexion.ConnectionString = "Server=ULARIAGA-BRAIAN\\LOCALHOST; Database= CATALOGO_P3_DB; User Id= sa; Password=Super123.adm "; /// Brian
+
+                conexion.ConnectionString = "Server=.\\SQLEXPRESS;  Database= CATALOGO_P3_DB; integrated security= true"; /// Andres & Nico
                 //Conexion para base de datos local con login de wind
-                //conexion.ConnectionString = "Server=.\\SQLEXPRESS;  Database= CATALOGO_P3_DB; integrated security= true"; 
+
                 comando.CommandType = System.Data.CommandType.Text; // Tipo de comando a ajecutar en el SQL, text(query), storeproceduire(SP)
                 comando.CommandText = "select Codigo, Nombre, Descripcion from ARTICULOS"; //Declaramos el query
                 comando.Connection = conexion; //Nos conectamos
@@ -58,6 +61,26 @@ namespace Actividad2
             }
 
 
+        }
+
+        public List <E_Articulo> Filtro(string campo, string criterio, string filtro)
+        {
+
+            List<E_Articulo> Lista_Articulo = new List<E_Articulo> ();
+            try
+            {
+
+                return Lista_Articulo;
+
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            throw new NotImplementedException();
         }
     }
 }
