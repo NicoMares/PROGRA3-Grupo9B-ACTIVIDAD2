@@ -18,7 +18,7 @@ namespace Entidades
         public decimal Precio { get; set; }
         public E_Marca Marca { get; set; }
         public E_Categoria Categoria { get; set; }
-        public List<E_Imagenes> Imagenes { get; set; } = new List<E_Imagenes>();
+        public E_Imagen ImagenUrl { get; set; }
 
 
 

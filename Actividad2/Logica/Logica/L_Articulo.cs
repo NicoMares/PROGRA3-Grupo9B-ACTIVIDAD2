@@ -78,7 +78,7 @@ namespace Logica
             try
             {
 
-                conexion.Consulta("select a.Id, a.Codigo, a.Nombre, a.Descripcion, a.Precio, c.Descripcion Categoria, m.Descripcion Marca from ARTICULOS a left join CATEGORIAS c on c.Id = a.IdCategoria left join MARCAS m on m.Id = a.IdMarca"); //Declaramos el query
+                conexion.Consulta("select a.Id, a.Codigo, a.Nombre, a.Descripcion, a.Precio, c.Descripcion Categoria, m.Descripcion Marca, isnull (i.ImagenUrl, '') ImagenUrl from ARTICULOS a left join CATEGORIAS c on c.Id = a.IdCategoria left join MARCAS m on m.Id = a.IdMarca left join IMAGENES i on i.IdArticulo = a.Id"); //Declaramos el query
                 conexion.Ejecutar();
 
                 while (conexion.Lector.Read())
@@ -94,7 +94,8 @@ namespace Logica
                     aux.Marca.Descripcion = (string)conexion.Lector["Marca"];
                     aux.Categoria = new E_Categoria();// instanciamos ya que marca es agregacion y no composicion  | tambien se debio sobreescribir el tostring en la entidad
                     aux.Categoria.Descripcion = (string)conexion.Lector["Categoria"];
-                    aux.Imagenes = ListarImagenes(aux.IdArt);
+                    aux.ImagenUrl = new E_Imagen();
+                    aux.ImagenUrl.ImagenUrl = (string)conexion.Lector["ImagenUrl"];
 
 
                     lista.Add(aux); // agregamos el objeto leido a la lista
@@ -141,9 +142,9 @@ namespace Logica
             throw new NotImplementedException();
         }
 
-        public List<E_Imagenes> ListarImagenes(int IdArticulo)
+        public List<E_Imagen> ListarImagenes(int IdArticulo)
         {
-            List<E_Imagenes> lista = new List<E_Imagenes>();
+            List<E_Imagen> lista = new List<E_Imagen>();
             ConexionSql conexion = new ConexionSql();
 
             try
@@ -155,7 +156,7 @@ namespace Logica
 
                 while (conexion.Lector.Read())
                 {
-                    E_Imagenes imagen = new E_Imagenes();
+                    E_Imagen imagen = new E_Imagen();
 
                     imagen.Id = (int)conexion.Lector["Id"];
                     imagen.IdArticulo = (int)conexion.Lector["IdArticulo"];

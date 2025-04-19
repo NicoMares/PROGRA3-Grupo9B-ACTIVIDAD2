@@ -39,11 +39,11 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.pbArt = new System.Windows.Forms.PictureBox();
+            this.pbxArt = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbArt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxArt)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvArticulos
@@ -155,15 +155,15 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.BuscarFiltrado);
             // 
-            // pbArt
+            // pbxArt
             // 
-            this.pbArt.Location = new System.Drawing.Point(705, 107);
-            this.pbArt.Name = "pbArt";
-            this.pbArt.Size = new System.Drawing.Size(309, 283);
-            this.pbArt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbArt.TabIndex = 12;
-            this.pbArt.TabStop = false;
-            this.pbArt.Click += new System.EventHandler(this.pbArticulos);
+            this.pbxArt.Location = new System.Drawing.Point(705, 107);
+            this.pbxArt.Name = "pbxArt";
+            this.pbxArt.Size = new System.Drawing.Size(309, 283);
+            this.pbxArt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxArt.TabIndex = 12;
+            this.pbxArt.TabStop = false;
+            this.pbxArt.Click += new System.EventHandler(this.pbArticulos);
             // 
             // button2
             // 
@@ -192,7 +192,7 @@
             this.ClientSize = new System.Drawing.Size(1043, 528);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.pbArt);
+            this.Controls.Add(this.pbxArt);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnEliminar);
@@ -208,7 +208,7 @@
             this.Text = "Articulos";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbArt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxArt)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,7 +228,7 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pbArt;
+        private System.Windows.Forms.PictureBox pbxArt;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
     }

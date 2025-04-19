@@ -16,7 +16,7 @@ namespace Actividad2
     public partial class frmPrincipal : Form
     {
         private List<E_Articulo> articulos;
-        private List<E_Imagenes> imagenesArticuloActual = new List<E_Imagenes>();
+        private List<E_Imagen> imagenesArticuloActual = new List<E_Imagen>();
         private int indiceImagenActual = 0;
         public frmPrincipal()
         {
@@ -33,9 +33,11 @@ namespace Actividad2
         public void CargarGrilla()
         {
             L_Articulo logica = new L_Articulo();
-            dgvArticulos.DataSource = logica.Listar();
+            articulos = logica.Listar();
+            dgvArticulos.DataSource = articulos;
             dgvArticulos.Columns["IdArt"].Visible = false;
-            //MessageBox.Show((articulos[0].Imagenes[0].ImagenUrl));
+            dgvArticulos.Columns["ImagenUrl"].Visible = false;
+            pbxArt.Load(articulos[0].ImagenUrl.ImagenUrl);
         }
 
         private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
@@ -103,8 +105,32 @@ namespace Actividad2
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
-           E_Articulo Seleccionada = (E_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-            
+            try
+            {
+               E_Articulo seleccionada = (E_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                CargarImagen(seleccionada.ImagenUrl.ImagenUrl);
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void CargarImagen(string url) {
+
+            try
+            {
+                pbxArt.Load(url);
+            }
+            catch (Exception ex)
+            {
+
+                pbxArt.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpPkm3Hhfm2fa7zZFgK0HQrD8yvwSBmnm_Gw&s");
+            }
+        
+        
         }
     }
 }
