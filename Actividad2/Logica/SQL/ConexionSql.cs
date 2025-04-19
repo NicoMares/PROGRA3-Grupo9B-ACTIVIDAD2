@@ -130,28 +130,7 @@ namespace Logica.Logica
                 comando.Parameters.AddWithValue(nombre, valor);
             }
 
-
-        public void EjecutarSql(string query)
-        {
-
-            comando.Connection = conexion; //Nos conectamos
-
-            try
-            {
-                conexion.Open(); // abrimos conexion
-                comando.ExecuteReader(); // Leemos el reusltado del query sin guardarlo
-
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-
-
+        
         }
-
-
-    }
     }
 
