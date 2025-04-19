@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,7 @@ namespace Logica.Logica
 
                 //Conexion para base de datos local con login de wind
                 conexion.ConnectionString = "Server=.\\SQLEXPRESS;  Database= CATALOGO_P3_DB; integrated security= true"; /// Andres & Nico
+                
 
             }
             catch (Exception ex)
@@ -65,7 +67,6 @@ namespace Logica.Logica
             try
             {
                 conexion.Open(); // abrimos conexion
-
                 lector = comando.ExecuteReader(); // Leemos el reusltado del query
 
             }
@@ -77,24 +78,59 @@ namespace Logica.Logica
 
 
         }
+        public void EjecutarAccion()
+        {
 
-        public void cerrarConexion() {
+            comando.Connection = conexion; //Nos conectamos
 
             try
             {
+                conexion.Open(); // abrimos conexion
+                comando.ExecuteReader(); // Leemos el reusltado del query sin guardarlo
 
-                if (lector !=null)
-                {
-                    lector.Close();
-                }
-                conexion.Close();   
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
+
+
+        }
+
+        public void cerrarConexion()
+        {
+
+            try
+            {
+
+                if (lector != null)
+                {
+                    lector.Close();
+                }
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
+                    conexion.Close();
+                }
+
+            }
+        }
+
+            public void SetParametros(string nombre, object valor)
+            {
+                comando.Parameters.AddWithValue(nombre, valor);
+            }
+
         
         }
     }
-}
+

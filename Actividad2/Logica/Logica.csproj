@@ -42,9 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SQL\ConexionSql.cs" />
-    <Compile Include="Logica\L_AgregarArticulo.cs" />
     <Compile Include="Logica\L_Articulo.cs" />
-    <Compile Include="Logica\L_EliminarArticulo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

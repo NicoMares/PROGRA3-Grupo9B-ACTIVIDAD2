@@ -8,11 +8,12 @@ using System.Xml.Linq;
 using Entidades;
 using Logica.Logica;
 
+
 namespace Logica
 {
     public class L_Articulo
     {
-        
+
 
         /*
         public List<E_Articulo> listar() //Funcion para listar articulos
@@ -67,7 +68,8 @@ namespace Logica
 
         }
         */
-        public List<E_Articulo> Listar() {
+        public List<E_Articulo> Listar()
+        {
 
             List<E_Articulo> lista = new List<E_Articulo>(); // instanciamos la lista
             ConexionSql conexion = new ConexionSql();
@@ -75,20 +77,24 @@ namespace Logica
             try
             {
 
-                conexion.Consulta("select a.Codigo, a.Nombre, a.Descripcion, c.Descripcion Categoria, m.Descripcion Marca from ARTICULOS a left join CATEGORIAS c on c.Id = a.IdCategoria left join MARCAS m on m.Id = a.IdMarca"); //Declaramos el query
+                conexion.Consulta("select a.Id, a.Codigo, a.Nombre, a.Descripcion, a.Precio, c.Descripcion Categoria, m.Descripcion Marca from ARTICULOS a left join CATEGORIAS c on c.Id = a.IdCategoria left join MARCAS m on m.Id = a.IdMarca"); //Declaramos el query
                 conexion.Ejecutar();
 
                 while (conexion.Lector.Read())
                 {
                     E_Articulo aux = new E_Articulo(); // creamos el objeto para guardar los datos que leemos
 
+                    aux.IdArt = (int)conexion.Lector["Id"]; //Indicamos el objeto con el dato a leer y parseamos el dato ya que lo lee como obj
                     aux.Codigo = (string)conexion.Lector["Codigo"]; //Indicamos el objeto con el dato a leer y parseamos el dato ya que lo lee como obj
                     aux.Nombre = (string)conexion.Lector["Nombre"];
                     aux.Descripcion = (string)conexion.Lector["Descripcion"];
+                    aux.Precio = (decimal)conexion.Lector["Precio"];
                     aux.Marca = new E_Marca(); // instanciamos ya que marca es agregacion y no composicion | tambien se debio sobreescribir el tostring en la entidad
                     aux.Marca.Descripcion = (string)conexion.Lector["Marca"];
                     aux.Categoria = new E_Categoria();// instanciamos ya que marca es agregacion y no composicion  | tambien se debio sobreescribir el tostring en la entidad
                     aux.Categoria.Descripcion = (string)conexion.Lector["Categoria"];
+                    aux.Imagenes = ListarImagenes(aux.IdArt);
+
 
                     lista.Add(aux); // agregamos el objeto leido a la lista
                 }
@@ -98,24 +104,25 @@ namespace Logica
             {
 
                 throw ex;
-            }finally
+            }
+            finally
             {
 
                 conexion.cerrarConexion();
 
             }
-        
-        
-        
+
+
+
         }
 
 
 
 
-        public List <E_Articulo> Filtro(string campo, string criterio, string filtro)
+        public List<E_Articulo> Filtro(string campo, string criterio, string filtro)
         {
 
-            List<E_Articulo> Lista_Articulo = new List<E_Articulo> ();
+            List<E_Articulo> Lista_Articulo = new List<E_Articulo>();
             try
             {
 
@@ -130,6 +137,41 @@ namespace Logica
                 throw;
             }
             throw new NotImplementedException();
+        }
+
+        public List<E_Imagenes> ListarImagenes(int IdArticulo)
+        {
+            List<E_Imagenes> lista = new List<E_Imagenes>();
+            ConexionSql conexion = new ConexionSql();
+
+            try
+            {
+                conexion.Consulta("SELECT Id, IdArticulo, ImagenUrl FROM IMAGENES WHERE IdArticulo = @IdArticulo");
+                conexion.SetParametros("@IdArticulo", IdArticulo);
+
+                conexion.Ejecutar();
+
+                while (conexion.Lector.Read())
+                {
+                    E_Imagenes imagen = new E_Imagenes();
+
+                    imagen.Id = (int)conexion.Lector["Id"];
+                    imagen.IdArticulo = (int)conexion.Lector["IdArticulo"];
+                    imagen.ImagenUrl = (string)conexion.Lector["ImagenUrl"];
+
+                    lista.Add(imagen);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
         }
     }
 }

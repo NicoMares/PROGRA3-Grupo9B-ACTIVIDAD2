@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entidades\E_Imagenes.cs" />
     <Compile Include="Entidades\E_Articulo.cs" />
     <Compile Include="Entidades\E_Categoria.cs" />
     <Compile Include="Entidades\E_Marca.cs" />
