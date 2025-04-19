@@ -102,5 +102,15 @@ namespace Actividad2
            E_Articulo Seleccionada = (E_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
             
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
