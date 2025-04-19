@@ -1,6 +1,6 @@
 ﻿namespace Actividad2
 {
-    partial class Form1
+    partial class frmPrincipal
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -185,7 +185,7 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Next_Click);
             // 
-            // Form1
+            // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -204,8 +204,8 @@
             this.Controls.Add(this.lblCampo);
             this.Controls.Add(this.lblCriterio);
             this.Controls.Add(this.dgvArticulos);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "frmPrincipal";
+            this.Text = "Articulos";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArt)).EndInit();

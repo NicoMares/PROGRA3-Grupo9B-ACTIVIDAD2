@@ -1,5 +1,6 @@
 ﻿using Entidades;
 using Logica;
+using Logica.Logica;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +15,11 @@ namespace Actividad2
 {
     public partial class FrmAltaArt : Form
     {
-        public FrmAltaArt()
+        private frmPrincipal padre;
+        public FrmAltaArt(frmPrincipal padre)
         {
             InitializeComponent();
+            this.padre = padre;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -36,12 +39,13 @@ namespace Actividad2
                 nuevo.Nombre = txtNombre.Text;
                 nuevo.Descripcion = txtDescripcion.Text;
                 nuevo.Precio = decimal.Parse(txtPrecio.Text);
-                //nuevo.Marca = txtMarca.Text;    
-                //nuevo.Categoria = txtCategoria.Text;
+                nuevo.Marca = (E_Marca)cboMarca.SelectedItem;    
+                nuevo.Categoria = (E_Categoria)cboCategoria.SelectedItem;
                 //nuevo.Imagenes = txtUrl.Text;
 
                 l_Articulo.Agregar(nuevo);
                 MessageBox.Show("Articulo agregado con exito !");
+                padre.CargarGrilla();
                 Close();
 
 
@@ -54,8 +58,25 @@ namespace Actividad2
         }
 
         private void btnCancelarArt_Click(object sender, EventArgs e)
-{
-    Close();
-}
+        {
+            Close();
+        }
+
+        private void FrmAltaArt_Load(object sender, EventArgs e)
+        {
+            L_Marca l_Marca = new L_Marca();
+            L_Categoria l_Categoria = new L_Categoria();
+
+            try
+            {
+                cboCategoria.DataSource = l_Categoria.ListarCategoria();
+                cboMarca.DataSource = l_Marca.ListarMarca();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }

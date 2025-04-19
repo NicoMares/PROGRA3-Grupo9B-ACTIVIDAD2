@@ -36,14 +36,14 @@
             this.lblCodigo = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.lblDescripcion = new System.Windows.Forms.Label();
-            this.txtMarca = new System.Windows.Forms.TextBox();
             this.lblMarca = new System.Windows.Forms.Label();
-            this.txtCategoria = new System.Windows.Forms.TextBox();
             this.lblCategoria = new System.Windows.Forms.Label();
             this.txtUrl = new System.Windows.Forms.TextBox();
             this.lblUrl = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.lblPrecio = new System.Windows.Forms.Label();
+            this.cboMarca = new System.Windows.Forms.ComboBox();
+            this.cboCategoria = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblNombre
@@ -114,13 +114,6 @@
             this.lblDescripcion.TabIndex = 6;
             this.lblDescripcion.Text = "Descripcion";
             // 
-            // txtMarca
-            // 
-            this.txtMarca.Location = new System.Drawing.Point(136, 175);
-            this.txtMarca.Name = "txtMarca";
-            this.txtMarca.Size = new System.Drawing.Size(119, 20);
-            this.txtMarca.TabIndex = 9;
-            // 
             // lblMarca
             // 
             this.lblMarca.AutoSize = true;
@@ -129,13 +122,6 @@
             this.lblMarca.Size = new System.Drawing.Size(37, 13);
             this.lblMarca.TabIndex = 8;
             this.lblMarca.Text = "Marca";
-            // 
-            // txtCategoria
-            // 
-            this.txtCategoria.Location = new System.Drawing.Point(136, 215);
-            this.txtCategoria.Name = "txtCategoria";
-            this.txtCategoria.Size = new System.Drawing.Size(119, 20);
-            this.txtCategoria.TabIndex = 11;
             // 
             // lblCategoria
             // 
@@ -179,18 +165,36 @@
             this.lblPrecio.Text = "Precio";
             this.lblPrecio.Click += new System.EventHandler(this.label1_Click);
             // 
+            // cboMarca
+            // 
+            this.cboMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMarca.FormattingEnabled = true;
+            this.cboMarca.Location = new System.Drawing.Point(136, 175);
+            this.cboMarca.Name = "cboMarca";
+            this.cboMarca.Size = new System.Drawing.Size(121, 21);
+            this.cboMarca.TabIndex = 16;
+            // 
+            // cboCategoria
+            // 
+            this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCategoria.FormattingEnabled = true;
+            this.cboCategoria.Location = new System.Drawing.Point(134, 212);
+            this.cboCategoria.Name = "cboCategoria";
+            this.cboCategoria.Size = new System.Drawing.Size(121, 21);
+            this.cboCategoria.TabIndex = 17;
+            // 
             // FrmAltaArt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 364);
+            this.Controls.Add(this.cboCategoria);
+            this.Controls.Add(this.cboMarca);
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.txtUrl);
             this.Controls.Add(this.lblUrl);
-            this.Controls.Add(this.txtCategoria);
             this.Controls.Add(this.lblCategoria);
-            this.Controls.Add(this.txtMarca);
             this.Controls.Add(this.lblMarca);
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.lblDescripcion);
@@ -202,6 +206,7 @@
             this.Controls.Add(this.lblNombre);
             this.Name = "FrmAltaArt";
             this.Text = "Nuevo Articulo";
+            this.Load += new System.EventHandler(this.FrmAltaArt_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,13 +222,13 @@
         private System.Windows.Forms.Label lblCodigo;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label lblDescripcion;
-        private System.Windows.Forms.TextBox txtMarca;
         private System.Windows.Forms.Label lblMarca;
-        private System.Windows.Forms.TextBox txtCategoria;
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.TextBox txtUrl;
         private System.Windows.Forms.Label lblUrl;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Label lblPrecio;
+        private System.Windows.Forms.ComboBox cboMarca;
+        private System.Windows.Forms.ComboBox cboCategoria;
     }
 }

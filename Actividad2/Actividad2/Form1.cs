@@ -13,28 +13,29 @@ using Entidades;
 
 namespace Actividad2
 {
-    public partial class Form1 : Form
+    public partial class frmPrincipal : Form
     {
         private List<E_Articulo> articulos;
         private List<E_Imagenes> imagenesArticuloActual = new List<E_Imagenes>();
         private int indiceImagenActual = 0;
-        public Form1()
+        public frmPrincipal()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            L_Articulo articulo = new L_Articulo();
-            articulos = articulo.Listar();
-            dgvArticulos.DataSource = articulos;
-            dgvArticulos.Columns["IdArt"].Visible = false;
-
-            MessageBox.Show((articulos[0].Imagenes[0].ImagenUrl));
-
+            CargarGrilla();
             cboCampo.Items.Add("Codigo");
             cboCampo.Items.Add("Nombre");
             cboCampo.Items.Add("Descripcion");   
+        }
+        public void CargarGrilla()
+        {
+            L_Articulo logica = new L_Articulo();
+            dgvArticulos.DataSource = logica.Listar();
+            dgvArticulos.Columns["IdArt"].Visible = false;
+            //MessageBox.Show((articulos[0].Imagenes[0].ImagenUrl));
         }
 
         private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
@@ -66,7 +67,7 @@ namespace Actividad2
 
         private void AgregarProducto(object sender, EventArgs e)
         {
-            FrmAltaArt frmAltaArt = new FrmAltaArt();
+            FrmAltaArt frmAltaArt = new FrmAltaArt(this);
             frmAltaArt.ShowDialog(); 
         }
 
