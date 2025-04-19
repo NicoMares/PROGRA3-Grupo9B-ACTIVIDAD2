@@ -206,6 +206,38 @@ namespace Logica
 
         }
 
+        public int UltimoId()
+        {
+
+            ConexionSql conexion = new ConexionSql();
+
+            try
+            {
+                conexion.Consulta("select Id from ARTICULOS order by id desc"); //Declaramos el query
+                conexion.Ejecutar();
+
+                conexion.Lector.Read();
+                E_Articulo aux = new E_Articulo(); // creamos el objeto para guardar los datos que leemos
+
+                return aux.IdArt = (int)conexion.Lector["Id"];
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+
+            }
+
+
+        }
+
+
 
         public void EliminarFisico(int idArticulo)
         {
@@ -227,7 +259,8 @@ namespace Logica
             }
         }
 
-        public void Modificar(E_Articulo articulo) {
+        public void Modificar(E_Articulo articulo)
+        {
 
             ConexionSql conexion = new ConexionSql();
 

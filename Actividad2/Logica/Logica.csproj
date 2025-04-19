@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logica\L_Categoria.cs" />
+    <Compile Include="Logica\L_Imagen.cs" />
     <Compile Include="Logica\L_Marca.cs" />
     <Compile Include="SQL\ConexionSql.cs" />
     <Compile Include="Logica\L_Articulo.cs" />

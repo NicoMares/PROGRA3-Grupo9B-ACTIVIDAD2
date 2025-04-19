@@ -132,5 +132,10 @@ namespace Actividad2
         
         
         }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            CargarGrilla();
+        }
     }
 }

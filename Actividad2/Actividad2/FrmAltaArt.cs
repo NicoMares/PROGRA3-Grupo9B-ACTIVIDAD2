@@ -32,6 +32,7 @@ namespace Actividad2
 
             E_Articulo nuevo = new E_Articulo(); // intancio el objeto de tipo art para setear los atributos
             L_Articulo l_Articulo = new L_Articulo();
+            L_Imagen l_Imagen = new Logica.Logica.L_Imagen();
 
             try
             {
@@ -41,9 +42,11 @@ namespace Actividad2
                 nuevo.Precio = decimal.Parse(txtPrecio.Text);
                 nuevo.Marca = (E_Marca)cboMarca.SelectedItem;    
                 nuevo.Categoria = (E_Categoria)cboCategoria.SelectedItem;
-                //nuevo.Imagenes = txtUrl.Text;
-
                 l_Articulo.Agregar(nuevo);
+                int idArt = l_Articulo.UltimoId();
+                string url = txtUrl.Text;
+                l_Imagen.AgregarImg(idArt, url);
+
                 MessageBox.Show("Articulo agregado con exito !");
                 padre.CargarGrilla();
                 Close();
