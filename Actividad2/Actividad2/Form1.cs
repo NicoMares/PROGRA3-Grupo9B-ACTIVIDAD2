@@ -100,7 +100,7 @@ namespace Actividad2
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
            E_Articulo Seleccionada = (E_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-            pbArt.Load(Seleccionada.Imagenes[0].ImagenUrl);
+            
         }
     }
 }
