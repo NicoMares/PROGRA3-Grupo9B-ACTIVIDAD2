@@ -28,7 +28,7 @@ namespace Actividad2
             L_Articulo articulo = new L_Articulo();
             articulos = articulo.Listar();
             dgvArticulos.DataSource = articulos;
-            pbArt.Load(articulos[0].Imagenes[0].ImagenUrl);
+            MessageBox.Show((articulos[0].Imagenes[0].ImagenUrl));
 
             cboCampo.Items.Add("Codigo");
             cboCampo.Items.Add("Nombre");

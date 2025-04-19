@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Xml.Linq;
 using Entidades;
 using Logica.Logica;
+using System.Security.Cryptography.X509Certificates;
 
 
 namespace Logica
@@ -173,5 +174,90 @@ namespace Logica
                 conexion.cerrarConexion();
             }
         }
+
+        public void Agregar(E_Articulo articulo)
+        {
+            ConexionSql conexion = new ConexionSql();
+
+            try
+            {
+                conexion.Consulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, Precio, IdCategoria, IdMarca) VALUES (@Codigo, @Nombre, @Descripcion, @Precio, @IdCategoria, @IdMarca)");
+
+                conexion.SetParametros("@Codigo", articulo.Codigo);
+                conexion.SetParametros("@Nombre", articulo.Nombre);
+                conexion.SetParametros("@Descripcion", articulo.Descripcion);
+                conexion.SetParametros("@Precio", articulo.Precio);
+                conexion.SetParametros("@IdCategoria", articulo.Categoria.Id);
+                conexion.SetParametros("@IdMarca", articulo.Marca.Id);
+
+                conexion.Ejecutar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+
+        }
+
+
+        public void EliminarFisico(int idArticulo)
+        {
+            ConexionSql conexion = new ConexionSql();
+
+            try
+            {
+                conexion.Consulta("DELETE FROM ARTICULOS WHERE Id = @Id");
+                conexion.SetParametros("@Id", idArticulo);
+                conexion.Ejecutar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+
+        public void Modificar(E_Articulo articulo) {
+
+            ConexionSql conexion = new ConexionSql();
+
+            try
+            {
+
+                conexion.Consulta("UPDATE ARTICULOS SET Codigo = @Codigo, Nombre = @Nombre, Descripcion = @Descripcion, Precio = @Precio, IdCategoria = @IdCategoria, IdMarca = @IdMarca WHERE Id = @Id");
+
+                conexion.SetParametros("@Codigo", articulo.Codigo);
+                conexion.SetParametros("@Nombre", articulo.Nombre);
+                conexion.SetParametros("@Descripcion", articulo.Descripcion);
+                conexion.SetParametros("@Precio", articulo.Precio);
+                conexion.SetParametros("@IdCategoria", articulo.Categoria.Id);
+                conexion.SetParametros("@IdMarca", articulo.Marca.Id);
+                conexion.SetParametros("@Id", articulo.IdArt);
+
+                conexion.Ejecutar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+
+
+
+
+
+            }
+        }
+
     }
+
 }
