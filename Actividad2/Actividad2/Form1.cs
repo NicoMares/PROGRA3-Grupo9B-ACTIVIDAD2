@@ -28,6 +28,8 @@ namespace Actividad2
             L_Articulo articulo = new L_Articulo();
             articulos = articulo.Listar();
             dgvArticulos.DataSource = articulos;
+            dgvArticulos.Columns["IdArt"].Visible = false;
+
             MessageBox.Show((articulos[0].Imagenes[0].ImagenUrl));
 
             cboCampo.Items.Add("Codigo");
@@ -64,7 +66,8 @@ namespace Actividad2
 
         private void AgregarProducto(object sender, EventArgs e)
         {
-
+            FrmAltaArt frmAltaArt = new FrmAltaArt();
+            frmAltaArt.ShowDialog(); 
         }
 
         private void EliminarProducto(object sender, EventArgs e)

@@ -181,16 +181,17 @@ namespace Logica
 
             try
             {
-                conexion.Consulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, Precio, IdCategoria, IdMarca) VALUES (@Codigo, @Nombre, @Descripcion, @Precio, @IdCategoria, @IdMarca)");
+                //conexion.Consulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, Precio, IdCategoria, IdMarca) VALUES (@Codigo, @Nombre, @Descripcion, @Precio, @IdCategoria, @IdMarca)");
+                conexion.Consulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, Precio) VALUES (@Codigo, @Nombre, @Descripcion, @Precio)");
 
                 conexion.SetParametros("@Codigo", articulo.Codigo);
                 conexion.SetParametros("@Nombre", articulo.Nombre);
                 conexion.SetParametros("@Descripcion", articulo.Descripcion);
                 conexion.SetParametros("@Precio", articulo.Precio);
-                conexion.SetParametros("@IdCategoria", articulo.Categoria.Id);
-                conexion.SetParametros("@IdMarca", articulo.Marca.Id);
+                //conexion.SetParametros("@IdCategoria", articulo.Categoria.Id);
+                //conexion.SetParametros("@IdMarca", articulo.Marca.Id);
 
-                conexion.Ejecutar();
+                conexion.EjecutarAccion();
             }
             catch (Exception ex)
             {
