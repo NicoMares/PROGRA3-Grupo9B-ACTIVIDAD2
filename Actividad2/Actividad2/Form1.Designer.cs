@@ -43,8 +43,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
+            this.dgvArt = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArt)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvArticulos
@@ -56,7 +58,7 @@
             this.dgvArticulos.Name = "dgvArticulos";
             this.dgvArticulos.ReadOnly = true;
             this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulos.Size = new System.Drawing.Size(602, 283);
+            this.dgvArticulos.Size = new System.Drawing.Size(662, 283);
             this.dgvArticulos.TabIndex = 0;
             this.dgvArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulos_CellContentClick);
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
@@ -158,9 +160,9 @@
             // 
             // pbxArt
             // 
-            this.pbxArt.Location = new System.Drawing.Point(705, 107);
+            this.pbxArt.Location = new System.Drawing.Point(720, 107);
             this.pbxArt.Name = "pbxArt";
-            this.pbxArt.Size = new System.Drawing.Size(309, 283);
+            this.pbxArt.Size = new System.Drawing.Size(271, 283);
             this.pbxArt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxArt.TabIndex = 12;
             this.pbxArt.TabStop = false;
@@ -196,11 +198,25 @@
             this.btnActualizar.UseVisualStyleBackColor = true;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
+            // dgvArt
+            // 
+            this.dgvArt.AllowUserToOrderColumns = true;
+            this.dgvArt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArt.Location = new System.Drawing.Point(52, 107);
+            this.dgvArt.MultiSelect = false;
+            this.dgvArt.Name = "dgvArt";
+            this.dgvArt.ReadOnly = true;
+            this.dgvArt.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvArt.Size = new System.Drawing.Size(265, 283);
+            this.dgvArt.TabIndex = 16;
+            this.dgvArt.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArt_CellContentClick);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1043, 528);
+            this.ClientSize = new System.Drawing.Size(1003, 438);
+            this.Controls.Add(this.dgvArt);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -221,6 +237,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArt)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,6 +261,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnActualizar;
+        private System.Windows.Forms.DataGridView dgvArt;
     }
 }
 

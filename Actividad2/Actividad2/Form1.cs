@@ -25,19 +25,39 @@ namespace Actividad2
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            dgvArticulos.Visible = false;
+
             CargarGrilla();
             cboCampo.Items.Add("Codigo");
             cboCampo.Items.Add("Nombre");
-            cboCampo.Items.Add("Descripcion");   
+            cboCampo.Items.Add("Descripcion");
         }
         public void CargarGrilla()
         {
             L_Articulo logica = new L_Articulo();
+            articulos = logica.ListarNombre();
+            dgvArt.DataSource = articulos;
+            dgvArt.Columns["IdArt"].Visible = false;
+            dgvArt.Columns["Descripcion"].Visible = false;
+            dgvArt.Columns["Precio"].Visible = false;
+            dgvArt.Columns["Marca"].Visible = false;
+            dgvArt.Columns["Categoria"].Visible = false;
+            dgvArt.Columns["ImagenUrl"].Visible = false;
+
+
+        }
+
+        public void CargarDetalles()
+        {
+
+            L_Articulo logica = new L_Articulo();
+            dgvArt.Visible = false;
             articulos = logica.Listar();
             dgvArticulos.DataSource = articulos;
             dgvArticulos.Columns["IdArt"].Visible = false;
             dgvArticulos.Columns["ImagenUrl"].Visible = false;
             pbxArt.Load(articulos[0].ImagenUrl.ImagenUrl);
+
         }
 
         private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
@@ -47,7 +67,7 @@ namespace Actividad2
             cboCriterio.Items.Add("Contiene");
             cboCriterio.Items.Add("Comienza con ");
             cboCriterio.Items.Add("Termina con ");
-       
+
 
         }
 
@@ -70,7 +90,7 @@ namespace Actividad2
         private void AgregarProducto(object sender, EventArgs e)
         {
             FrmAltaArt frmAltaArt = new FrmAltaArt(this);
-            frmAltaArt.ShowDialog(); 
+            frmAltaArt.ShowDialog();
         }
 
         private void EliminarProducto(object sender, EventArgs e)
@@ -107,7 +127,7 @@ namespace Actividad2
         {
             try
             {
-               E_Articulo seleccionada = (E_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                E_Articulo seleccionada = (E_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
                 CargarImagen(seleccionada.ImagenUrl.ImagenUrl);
 
             }
@@ -118,7 +138,8 @@ namespace Actividad2
             }
         }
 
-        private void CargarImagen(string url) {
+        private void CargarImagen(string url)
+        {
 
             try
             {
@@ -129,13 +150,19 @@ namespace Actividad2
 
                 pbxArt.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpPkm3Hhfm2fa7zZFgK0HQrD8yvwSBmnm_Gw&s");
             }
-        
-        
+
+
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             CargarGrilla();
+        }
+
+        private void dgvArt_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvArticulos.Visible = true;
+            CargarDetalles();
         }
     }
 }

@@ -69,6 +69,47 @@ namespace Logica
 
         }
         */
+
+        public List<E_Articulo> ListarNombre()
+        {
+
+            List<E_Articulo> lista = new List<E_Articulo>(); // instanciamos la lista
+            ConexionSql conexion = new ConexionSql();
+
+            try
+            {
+
+                conexion.Consulta("select Codigo, Nombre  from ARTICULOS"); //Declaramos el query
+                conexion.Ejecutar();
+
+                while (conexion.Lector.Read())
+                {
+                    E_Articulo aux = new E_Articulo(); // creamos el objeto para guardar los datos que leemos
+
+                   
+                    aux.Codigo = (string)conexion.Lector["Codigo"]; //Indicamos el objeto con el dato a leer y parseamos el dato ya que lo lee como obj
+                    aux.Nombre = (string)conexion.Lector["Nombre"];
+                   
+                    lista.Add(aux); // agregamos el objeto leido a la lista
+
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+
+                conexion.cerrarConexion();
+
+            }
+
+
+
+        }
         public List<E_Articulo> Listar()
         {
 
