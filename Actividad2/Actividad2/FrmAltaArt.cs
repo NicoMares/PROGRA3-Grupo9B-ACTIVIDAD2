@@ -15,13 +15,18 @@ namespace Actividad2
 {
     public partial class FrmAltaArt : Form
     {
-        private frmPrincipal padre;
-        public FrmAltaArt(frmPrincipal padre)
+        private E_Articulo art = null; // intancio el objeto de tipo art para setear los atributos
+        public FrmAltaArt()
         {
             InitializeComponent();
-            this.padre = padre;
+
         }
 
+        public FrmAltaArt(E_Articulo articulo)
+        {
+            InitializeComponent();
+            this.art = articulo;
+        }
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -30,28 +35,35 @@ namespace Actividad2
         private void btnAceptarArt_Click(object sender, EventArgs e)
         {
 
-            E_Articulo nuevo = new E_Articulo(); // intancio el objeto de tipo art para setear los atributos
+
             L_Articulo l_Articulo = new L_Articulo();
-            L_Imagen l_Imagen = new Logica.Logica.L_Imagen();
+            L_Imagen l_Imagen = new L_Imagen();
 
             try
             {
-                nuevo.Codigo = txtCodigo.Text;
-                nuevo.Nombre = txtNombre.Text;
-                nuevo.Descripcion = txtDescripcion.Text;
-                nuevo.Precio = decimal.Parse(txtPrecio.Text);
-                nuevo.Marca = (E_Marca)cboMarca.SelectedItem;    
-                nuevo.Categoria = (E_Categoria)cboCategoria.SelectedItem;
-                l_Articulo.Agregar(nuevo);
-                int idArt = l_Articulo.UltimoId();
-                string url = txtUrl.Text;
-                l_Imagen.AgregarImg(idArt, url);
+                if (art == null)
+                {
+                    E_Articulo art = new E_Articulo(); // intancio el objeto de tipo art para setear los atributos
+                }
+                art.Codigo = txtCodigo.Text;
+                art.Nombre = txtNombre.Text;
+                art.Descripcion = txtDescripcion.Text;
+                art.Precio = decimal.Parse(txtPrecio.Text);
+                art.Marca = (E_Marca)cboMarca.SelectedItem;
+                art.Categoria = (E_Categoria)cboCategoria.SelectedItem;
+                if (art.IdArt != 0)
+                {
 
-                MessageBox.Show("Articulo agregado con exito !");
-                padre.CargarGrilla();
+                    l_Articulo.Agregar(art);
+                    int idArt = l_Articulo.UltimoId();
+                    string url = txtUrl.Text;
+                    l_Imagen.AgregarImg(idArt, url);
+                    MessageBox.Show("Articulo agregado con exito !");
+                }
+                l_Articulo.Modificar(art);
+
+
                 Close();
-
-
             }
             catch (Exception ex)
             {
@@ -73,12 +85,48 @@ namespace Actividad2
             try
             {
                 cboCategoria.DataSource = l_Categoria.ListarCategoria();
+                cboCategoria.ValueMember = "Id";
+                cboCategoria.DisplayMember = "Descripcion";
                 cboMarca.DataSource = l_Marca.ListarMarca();
+                cboMarca.ValueMember = "Id";
+                cboMarca.DisplayMember = "Descripcion";
+
+
+                if (art != null)
+                {
+                    txtCodigo.Text = art.Codigo;
+                    txtNombre.Text = art.Nombre;
+                    txtDescripcion.Text = art.Descripcion;
+                    txtPrecio.Text = art.Precio.ToString();
+                    cboCategoria.SelectedValue = art.IdCategoria; //Seleccionamos el valor del objeto que traemos por parametro
+                    cboMarca.SelectedValue = art.IdMarca;
+                    txtUrl.Text = art.ImagenUrl.ImagenUrl;
+                    CargarImagen(art.ImagenUrl.ImagenUrl);
+                }
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void txtUrl_Leave(object sender, EventArgs e)
+        {
+            string url = txtUrl.Text;
+            CargarImagen(url);
+        }
+
+        private void CargarImagen(string imagen)
+        {
+
+            try
+            {
+                pbxImgAlta.Load(imagen);
+            }
+            catch
+            {
+                pbxImgAlta.Load("https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png");
             }
         }
     }

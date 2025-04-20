@@ -24,6 +24,7 @@ namespace Actividad2
             InitializeComponent();
         }
 
+   
         private void Form1_Load(object sender, EventArgs e)
         {
             btnVolver.Visible = false;
@@ -39,16 +40,16 @@ namespace Actividad2
         public void CargarGrilla()
         {
             L_Articulo logica = new L_Articulo();
-            articulos = logica.ListarNombre();
+            articulos = logica.Listar();
             dgvArt.DataSource = articulos;
             dgvArt.Columns["IdArt"].Visible = false;
+            dgvArt.Columns["IdCategoria"].Visible = false;
+            dgvArt.Columns["IdMarca"].Visible = false;
             dgvArt.Columns["Descripcion"].Visible = false;
             dgvArt.Columns["Precio"].Visible = false;
             dgvArt.Columns["Marca"].Visible = false;
             dgvArt.Columns["Categoria"].Visible = false;
             dgvArt.Columns["ImagenUrl"].Visible = false;
-
-
         }
 
         public void CargarDetallesIndividual(int id)
@@ -63,9 +64,11 @@ namespace Actividad2
             dgvArticulos.DataSource = lista;
             dgvArticulos.Columns["IdArt"].Visible = false;
             dgvArticulos.Columns["ImagenUrl"].Visible = false;
-
+            dgvArticulos.Columns["IdMarca"].Visible = false;
+            dgvArticulos.Columns["IdCategoria"].Visible = false;
             btnAnterior.Visible = true;
             btnProximo.Visible = true;
+            btnActualizar.Visible = false;
 
         }
 
@@ -93,23 +96,10 @@ namespace Actividad2
         {
 
         }
-
-        private void EliminarProducto(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ModificarProducto(object sender, EventArgs e)
-        {
-
-        }
-
         private void BuscarFiltrado(object sender, EventArgs e)
         {
 
         }
-
-
         private void pbArticulos(object sender, EventArgs e)
         {
 
@@ -180,6 +170,7 @@ namespace Actividad2
             btnAnterior.Visible = false;
             btnProximo.Visible = false;
             indiceImg = 0;
+            btnActualizar.Visible = true;
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
@@ -205,8 +196,6 @@ namespace Actividad2
     
                 dgvArticulos.Visible = true;
                 btnVolver.Visible = true;
-                btnActualizar.Visible = false;
-
                 int idSeleccionado = ((E_Articulo)dgvArt.Rows[e.RowIndex].DataBoundItem).IdArt;
 
                 CargarDetallesIndividual(idSeleccionado);
@@ -215,8 +204,21 @@ namespace Actividad2
 
         private void tmNuevoArt_Click(object sender, EventArgs e)
         {
-            FrmAltaArt frmAltaArt = new FrmAltaArt(this);
+            FrmAltaArt frmAltaArt = new FrmAltaArt();
             frmAltaArt.ShowDialog();
+            CargarGrilla();
+        }
+
+        private void tmModificarArt_Click(object sender, EventArgs e)
+        {
+            E_Articulo seleccionado; // creamos el objeto art
+            L_Articulo l_Articulo = new L_Articulo(); // creamos el obj de la logica art para usar las fuciones
+            seleccionado = (E_Articulo)dgvArt.CurrentRow.DataBoundItem; //seleccionamos el elemento de la grid
+            seleccionado = l_Articulo.ListarPorID(seleccionado.IdArt); //llamamos al obj logica, usamos el meotodo para obtener los datos y se lo pasamos al obj art
+            
+            FrmAltaArt modificar = new FrmAltaArt(seleccionado);
+            modificar.ShowDialog();
+            CargarGrilla();
         }
     }
 }

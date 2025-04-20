@@ -57,12 +57,13 @@
             // 
             this.dgvArticulos.AllowUserToOrderColumns = true;
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvArticulos.Location = new System.Drawing.Point(52, 93);
+            this.dgvArticulos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvArticulos.Location = new System.Drawing.Point(12, 93);
             this.dgvArticulos.MultiSelect = false;
             this.dgvArticulos.Name = "dgvArticulos";
             this.dgvArticulos.ReadOnly = true;
             this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulos.Size = new System.Drawing.Size(662, 283);
+            this.dgvArticulos.Size = new System.Drawing.Size(646, 56);
             this.dgvArticulos.TabIndex = 0;
             this.dgvArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulos_CellContentClick);
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
@@ -88,7 +89,7 @@
             // lblFiltro
             // 
             this.lblFiltro.AutoSize = true;
-            this.lblFiltro.Location = new System.Drawing.Point(420, 30);
+            this.lblFiltro.Location = new System.Drawing.Point(392, 30);
             this.lblFiltro.Name = "lblFiltro";
             this.lblFiltro.Size = new System.Drawing.Size(29, 13);
             this.lblFiltro.TabIndex = 3;
@@ -116,7 +117,7 @@
             // 
             // txtFiltro
             // 
-            this.txtFiltro.Location = new System.Drawing.Point(473, 27);
+            this.txtFiltro.Location = new System.Drawing.Point(445, 27);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(121, 20);
             this.txtFiltro.TabIndex = 6;
@@ -124,7 +125,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(639, 27);
+            this.button1.Location = new System.Drawing.Point(585, 27);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 11;
@@ -134,7 +135,7 @@
             // 
             // pbxArt
             // 
-            this.pbxArt.Location = new System.Drawing.Point(720, 93);
+            this.pbxArt.Location = new System.Drawing.Point(235, 155);
             this.pbxArt.Name = "pbxArt";
             this.pbxArt.Size = new System.Drawing.Size(271, 283);
             this.pbxArt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -144,7 +145,7 @@
             // 
             // btnAnterior
             // 
-            this.btnAnterior.Location = new System.Drawing.Point(741, 64);
+            this.btnAnterior.Location = new System.Drawing.Point(550, 329);
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(75, 23);
             this.btnAnterior.TabIndex = 13;
@@ -154,7 +155,7 @@
             // 
             // btnProximo
             // 
-            this.btnProximo.Location = new System.Drawing.Point(884, 64);
+            this.btnProximo.Location = new System.Drawing.Point(550, 248);
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(75, 23);
             this.btnProximo.TabIndex = 14;
@@ -164,7 +165,7 @@
             // 
             // btnActualizar
             // 
-            this.btnActualizar.Location = new System.Drawing.Point(250, 64);
+            this.btnActualizar.Location = new System.Drawing.Point(12, 64);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(75, 23);
             this.btnActualizar.TabIndex = 15;
@@ -176,12 +177,13 @@
             // 
             this.dgvArt.AllowUserToOrderColumns = true;
             this.dgvArt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvArt.Location = new System.Drawing.Point(52, 93);
+            this.dgvArt.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvArt.Location = new System.Drawing.Point(12, 93);
             this.dgvArt.MultiSelect = false;
             this.dgvArt.Name = "dgvArt";
             this.dgvArt.ReadOnly = true;
             this.dgvArt.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArt.Size = new System.Drawing.Size(265, 283);
+            this.dgvArt.Size = new System.Drawing.Size(265, 345);
             this.dgvArt.TabIndex = 16;
             this.dgvArt.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArt_CellClick);
             // 
@@ -189,9 +191,9 @@
             // 
             this.btnVolver.Image = global::Actividad2.Properties.Resources.return_back_icon;
             this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVolver.Location = new System.Drawing.Point(52, 64);
+            this.btnVolver.Location = new System.Drawing.Point(597, 64);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(61, 23);
+            this.btnVolver.Size = new System.Drawing.Size(63, 23);
             this.btnVolver.TabIndex = 17;
             this.btnVolver.Text = "Volver";
             this.btnVolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -204,7 +206,7 @@
             this.accionesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1014, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(670, 24);
             this.menuStrip1.TabIndex = 18;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -221,7 +223,7 @@
             // tmNuevoArt
             // 
             this.tmNuevoArt.Name = "tmNuevoArt";
-            this.tmNuevoArt.Size = new System.Drawing.Size(180, 22);
+            this.tmNuevoArt.Size = new System.Drawing.Size(170, 22);
             this.tmNuevoArt.Text = "Nuevo Articulo";
             this.tmNuevoArt.Click += new System.EventHandler(this.tmNuevoArt_Click);
             // 
@@ -230,6 +232,7 @@
             this.tmModificarArt.Name = "tmModificarArt";
             this.tmModificarArt.Size = new System.Drawing.Size(170, 22);
             this.tmModificarArt.Text = "Modificar Articulo";
+            this.tmModificarArt.Click += new System.EventHandler(this.tmModificarArt_Click);
             // 
             // tmEliminarArt
             // 
@@ -241,7 +244,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1014, 407);
+            this.ClientSize = new System.Drawing.Size(670, 457);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.dgvArt);
             this.Controls.Add(this.btnActualizar);

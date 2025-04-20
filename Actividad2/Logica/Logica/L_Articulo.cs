@@ -15,101 +15,6 @@ namespace Logica
     public class L_Articulo
     {
 
-
-        /*
-        public List<E_Articulo> listar() //Funcion para listar articulos
-        {
-
-            List<E_Articulo> lista = new List<E_Articulo>(); // instanciamos la lista
-            SqlConnection conexion = new SqlConnection(); // instanciamos la conexion a la base
-            SqlCommand comando = new SqlCommand();  // instanciamos el comando para ejecutar las query
-            SqlDataReader lector; // No se instancia
-
-
-            try
-            {
-               // Conexion para base de datos con declaracion de usuario especifico con login de sql
-                conexion.ConnectionString = "Server=ULARIAGA-BRAIAN\\LOCALHOST; Database= CATALOGO_P3_DB; User Id= sa; Password=Super123.adm "; /// brian
-
-              //  Conexion para base de datos local con login de wind
-                /// conexion.ConnectionString = "Server=.\\SQLEXPRESS;  Database= CATALOGO_P3_DB; integrated security= true"; /// Andres & Nico
-
-                comando.CommandType = System.Data.CommandType.Text; // Tipo de comando a ajecutar en el SQL, text(query), storeproceduire(SP)
-                comando.CommandText = "select a.Codigo, a.Nombre, a.Descripcion, c.Descripcion Categoria, m.Descripcion Marca from ARTICULOS a left join CATEGORIAS c on c.Id = a.IdCategoria left join MARCAS m on m.Id = a.IdMarca"; //Declaramos el query
-                comando.Connection = conexion; //Nos conectamos
-                conexion.Open(); // abrimos conexion
-                lector = comando.ExecuteReader(); // Leemos el reusltado del query
-
-                while (lector.Read())
-                {
-                   E_Articulo aux = new E_Articulo(); // creamos el objeto para guardar los datos que leemos
-
-                    aux.Codigo = (string)lector["Codigo"]; //Indicamos el objeto con el dato a leer y parseamos el dato ya que lo lee como obj
-                    aux.Nombre = (string)lector["Nombre"];
-                    aux.Descripcion = (string)lector["Descripcion"];
-                    aux.Marca = new E_Marca(); // instanciamos ya que marca es agregacion y no composicion | tambien se debio sobreescribir el tostring en la entidad
-                    aux.Marca.Descripcion = (string)lector["Marca"];
-                    aux.Categoria = new E_Categoria();// instanciamos ya que marca es agregacion y no composicion  | tambien se debio sobreescribir el tostring en la entidad
-                    aux.Categoria.Descripcion = (string)lector["Categoria"];
-
-                    lista.Add(aux); // agregamos el objeto leido a la lista
-
-                }
-
-                conexion.Close(); // cerramos conexion
-
-                return lista;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-
-        }
-        */
-
-        public List<E_Articulo> ListarNombre()
-        {
-
-            List<E_Articulo> lista = new List<E_Articulo>(); // instanciamos la lista
-            ConexionSql conexion = new ConexionSql();
-
-            try
-            {
-
-                conexion.Consulta("select Id, Codigo, Nombre  from ARTICULOS"); //Declaramos el query
-                conexion.Ejecutar();
-
-                while (conexion.Lector.Read())
-                {
-                    E_Articulo aux = new E_Articulo(); // creamos el objeto para guardar los datos que leemos
-
-                    aux.IdArt = (int)conexion.Lector["Id"]; //Indicamos el objeto con el dato a leer y parseamos el dato ya que lo lee como obj
-                    aux.Codigo = (string)conexion.Lector["Codigo"]; //Indicamos el objeto con el dato a leer y parseamos el dato ya que lo lee como obj
-                    aux.Nombre = (string)conexion.Lector["Nombre"];
-                   
-                    lista.Add(aux); // agregamos el objeto leido a la lista
-
-                }
-                return lista;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-
-                conexion.cerrarConexion();
-
-            }
-
-
-
-        }
         public List<E_Articulo> Listar()
         {
 
@@ -119,7 +24,7 @@ namespace Logica
             try
             {
 
-                conexion.Consulta("select a.Id, a.Codigo, a.Nombre, a.Descripcion, a.Precio, c.Descripcion Categoria, m.Descripcion Marca, isnull (i.ImagenUrl, '') ImagenUrl from ARTICULOS a left join CATEGORIAS c on c.Id = a.IdCategoria left join MARCAS m on m.Id = a.IdMarca left join IMAGENES i on i.IdArticulo = a.Id"); //Declaramos el query
+                conexion.Consulta("select a.Id, c.id as IdCategoria, m.id as IdMarca, a.Codigo, a.Nombre, a.Descripcion, a.Precio, c.Descripcion Categoria, m.Descripcion Marca, isnull (i.ImagenUrl, '') ImagenUrl from ARTICULOS a left join CATEGORIAS c on c.Id = a.IdCategoria left join MARCAS m on m.Id = a.IdMarca left join IMAGENES i on i.IdArticulo = a.Id"); //Declaramos el query
                 conexion.Ejecutar();
 
                 while (conexion.Lector.Read())
@@ -127,6 +32,8 @@ namespace Logica
                     E_Articulo aux = new E_Articulo(); // creamos el objeto para guardar los datos que leemos
 
                     aux.IdArt = (int)conexion.Lector["Id"]; //Indicamos el objeto con el dato a leer y parseamos el dato ya que lo lee como obj
+                    aux.IdCategoria = (int)conexion.Lector["IdCategoria"];
+                    aux.IdMarca = (int)conexion.Lector["IdMarca"];
                     aux.Codigo = (string)conexion.Lector["Codigo"]; //Indicamos el objeto con el dato a leer y parseamos el dato ya que lo lee como obj
                     aux.Nombre = (string)conexion.Lector["Nombre"];
                     aux.Descripcion = (string)conexion.Lector["Descripcion"];
@@ -165,22 +72,16 @@ namespace Logica
 
             try
             {
-                conexion.Consulta(@"SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, a.Precio,
-                                   c.Descripcion AS Categoria,
-                                   m.Descripcion AS Marca,
-                                   ISNULL(i.ImagenUrl, '') AS ImagenUrl
-                            FROM ARTICULOS a
-                            LEFT JOIN CATEGORIAS c ON c.Id = a.IdCategoria
-                            LEFT JOIN MARCAS m ON m.Id = a.IdMarca
-                            LEFT JOIN IMAGENES i ON i.IdArticulo = a.Id
-                            WHERE a.Id = @id");  // 👈 Filtro por ID
+                conexion.Consulta(@"select a.Id, c.id as IdCategoria, m.id as IdMarca, a.Codigo, a.Nombre, a.Descripcion, a.Precio, c.Descripcion Categoria, m.Descripcion Marca, isnull (i.ImagenUrl, '') ImagenUrl from ARTICULOS a left join CATEGORIAS c on c.Id = a.IdCategoria left join MARCAS m on m.Id = a.IdMarca left join IMAGENES i on i.IdArticulo = a.Id WHERE a.Id = @id"); 
 
-                conexion.SetParametros("@id", id);       // 👈 Paso el valor del parámetro
+                conexion.SetParametros("@id", id);       
                 conexion.Ejecutar();
 
-                if (conexion.Lector.Read())  // Usamos if porque solo esperamos un resultado
+                if (conexion.Lector.Read())  
                 {
                     aux.IdArt = (int)conexion.Lector["Id"];
+                    aux.IdCategoria = (int)conexion.Lector["IdCategoria"];
+                    aux.IdMarca = (int)conexion.Lector["IdMarca"];
                     aux.Codigo = (string)conexion.Lector["Codigo"];
                     aux.Nombre = (string)conexion.Lector["Nombre"];
                     aux.Descripcion = (string)conexion.Lector["Descripcion"];
