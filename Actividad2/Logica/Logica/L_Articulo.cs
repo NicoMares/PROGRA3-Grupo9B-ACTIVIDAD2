@@ -14,7 +14,7 @@ namespace Logica
 {
     public class L_Articulo
     {
-
+        
 
         /*
         public List<E_Articulo> listar() //Funcion para listar articulos

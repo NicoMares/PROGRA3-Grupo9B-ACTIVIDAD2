@@ -25,38 +25,25 @@ namespace Actividad2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dgvArticulos.Visible = false;
-
+           articulos = new List<E_Articulo>();
+            CargarDetalles();
             CargarGrilla();
-            cboCampo.Items.Add("Codigo");
-            cboCampo.Items.Add("Nombre");
-            cboCampo.Items.Add("Descripcion");
+
         }
         public void CargarGrilla()
         {
-            L_Articulo logica = new L_Articulo();
-            articulos = logica.ListarNombre();
-            dgvArt.DataSource = articulos;
-            dgvArt.Columns["IdArt"].Visible = false;
-            dgvArt.Columns["Descripcion"].Visible = false;
-            dgvArt.Columns["Precio"].Visible = false;
-            dgvArt.Columns["Marca"].Visible = false;
-            dgvArt.Columns["Categoria"].Visible = false;
-            dgvArt.Columns["ImagenUrl"].Visible = false;
-
-
+            dgvArticulos.DataSource = articulos;
         }
 
         public void CargarDetalles()
         {
-
             L_Articulo logica = new L_Articulo();
-            dgvArt.Visible = false;
             articulos = logica.Listar();
             dgvArticulos.DataSource = articulos;
             dgvArticulos.Columns["IdArt"].Visible = false;
             dgvArticulos.Columns["ImagenUrl"].Visible = false;
             pbxArt.Load(articulos[0].ImagenUrl.ImagenUrl);
+
 
         }
 
@@ -91,11 +78,30 @@ namespace Actividad2
         {
             FrmAltaArt frmAltaArt = new FrmAltaArt(this);
             frmAltaArt.ShowDialog();
+            CargarDetalles();
         }
 
         private void EliminarProducto(object sender, EventArgs e)
         {
+            // Mostrar mensaje de confirmación
+            DialogResult resultado = MessageBox.Show("¿Estás seguro de que querés eliminar este producto?",
+                                                     "Confirmar eliminación",
+                                                     MessageBoxButtons.YesNo,
+                                                     MessageBoxIcon.Question);
 
+            if (resultado == DialogResult.Yes)
+            {
+                L_Articulo logica = new L_Articulo();
+                E_Articulo eliminar = (E_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                logica.EliminarFisico(eliminar.IdArt);
+                CargarDetalles();
+
+            }
+            else
+            {
+                // El usuario eligio no
+                MessageBox.Show("El producto no fue eliminado.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void ModificarProducto(object sender, EventArgs e)
@@ -145,7 +151,7 @@ namespace Actividad2
             {
                 pbxArt.Load(url);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 pbxArt.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpPkm3Hhfm2fa7zZFgK0HQrD8yvwSBmnm_Gw&s");
@@ -156,7 +162,7 @@ namespace Actividad2
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            CargarGrilla();
+            
         }
 
         private void dgvArt_CellContentClick(object sender, DataGridViewCellEventArgs e)
