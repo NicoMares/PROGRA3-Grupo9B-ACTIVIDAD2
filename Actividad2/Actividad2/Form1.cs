@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logica;
 using Entidades;
+using Logica.Logica;
 
 
 namespace Actividad2
@@ -16,8 +17,8 @@ namespace Actividad2
     public partial class frmPrincipal : Form
     {
         private List<E_Articulo> articulos;
-        private List<E_Imagen> imagenesArticuloActual = new List<E_Imagen>();
-        private int indiceImagenActual = 0;
+        private List<E_Imagen> imagenesArt = new List<E_Imagen>();
+        private int indiceImg = 0;
         public frmPrincipal()
         {
             InitializeComponent();
@@ -25,7 +26,10 @@ namespace Actividad2
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            btnVolver.Visible = false;
             dgvArticulos.Visible = false;
+            btnAnterior.Visible = false;   
+            btnProximo.Visible = false;
 
             CargarGrilla();
             cboCampo.Items.Add("Codigo");
@@ -47,27 +51,30 @@ namespace Actividad2
 
         }
 
-        public void CargarDetalles()
+        public void CargarDetallesIndividual(int id)
         {
 
             L_Articulo logica = new L_Articulo();
+            E_Articulo art = new E_Articulo();
+            art = logica.ListarPorID(id);
+            List <E_Articulo> lista = new List <E_Articulo>();  
+            lista.Add(art);
             dgvArt.Visible = false;
-            articulos = logica.Listar();
-            dgvArticulos.DataSource = articulos;
+            dgvArticulos.DataSource = lista;
             dgvArticulos.Columns["IdArt"].Visible = false;
             dgvArticulos.Columns["ImagenUrl"].Visible = false;
-            pbxArt.Load(articulos[0].ImagenUrl.ImagenUrl);
+
+            btnAnterior.Visible = true;
+            btnProximo.Visible = true;
 
         }
 
         private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ///
             cboCriterio.Items.Clear();
             cboCriterio.Items.Add("Contiene");
             cboCriterio.Items.Add("Comienza con ");
             cboCriterio.Items.Add("Termina con ");
-
 
         }
 
@@ -87,12 +94,6 @@ namespace Actividad2
 
         }
 
-        private void AgregarProducto(object sender, EventArgs e)
-        {
-            FrmAltaArt frmAltaArt = new FrmAltaArt(this);
-            frmAltaArt.ShowDialog();
-        }
-
         private void EliminarProducto(object sender, EventArgs e)
         {
 
@@ -108,15 +109,6 @@ namespace Actividad2
 
         }
 
-        private void Back_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Next_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void pbArticulos(object sender, EventArgs e)
         {
@@ -128,8 +120,12 @@ namespace Actividad2
             try
             {
                 E_Articulo seleccionada = (E_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-                CargarImagen(seleccionada.ImagenUrl.ImagenUrl);
+                int id = seleccionada.IdArt;
+                List<E_Imagen> lista = new List<E_Imagen>(); 
+                L_Imagen imagen = new L_Imagen();
+                lista = imagen.ListarImagenesPorID(id);
 
+                CargarImagen(lista);
             }
             catch (Exception ex)
             {
@@ -138,20 +134,25 @@ namespace Actividad2
             }
         }
 
-        private void CargarImagen(string url)
+        private void CargarImagen(List<E_Imagen> imagenes)
         {
+
+            imagenesArt = imagenes;
+
+            if (imagenesArt == null || imagenesArt.Count == 0)
+            {
+                pbxArt.Load("https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png");
+                return;
+            }
 
             try
             {
-                pbxArt.Load(url);
+                pbxArt.Load(imagenesArt[indiceImg].ImagenUrl);
             }
-            catch (Exception ex)
+            catch
             {
-
-                pbxArt.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpPkm3Hhfm2fa7zZFgK0HQrD8yvwSBmnm_Gw&s");
+                pbxArt.Load("https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png");
             }
-
-
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -159,10 +160,63 @@ namespace Actividad2
             CargarGrilla();
         }
 
-        private void dgvArt_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //private void dgvArt_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    dgvArticulos.Visible = true;
+        //    btnVolver.Visible = true;
+        //    btnActualizar.Visible = false;
+
+        //    int idSeleccionado = ((E_Articulo)dgvArt.Rows[e.RowIndex].DataBoundItem).IdArt;
+
+        //    CargarDetallesIndividual(idSeleccionado);
+        //}
+
+        private void btnVolver_Click(object sender, EventArgs e)
         {
-            dgvArticulos.Visible = true;
-            CargarDetalles();
+            dgvArt.Visible = true;
+            dgvArticulos.Visible = false;
+            pbxArt.Image = null;
+            btnVolver.Visible = false;
+            btnAnterior.Visible = false;
+            btnProximo.Visible = false;
+            indiceImg = 0;
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (imagenesArt != null && imagenesArt.Count > 0)
+            {
+                indiceImg = (indiceImg - 1 + imagenesArt.Count) % imagenesArt.Count;
+                CargarImagen(imagenesArt);
+            }
+        }
+
+        private void btnProximo_Click(object sender, EventArgs e)
+        {
+            if (imagenesArt != null && imagenesArt.Count > 0)
+            {
+                indiceImg = (indiceImg + 1) % imagenesArt.Count;
+                CargarImagen(imagenesArt);
+            }
+        }
+
+        private void dgvArt_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+    
+                dgvArticulos.Visible = true;
+                btnVolver.Visible = true;
+                btnActualizar.Visible = false;
+
+                int idSeleccionado = ((E_Articulo)dgvArt.Rows[e.RowIndex].DataBoundItem).IdArt;
+
+                CargarDetallesIndividual(idSeleccionado);
+            
+        }
+
+        private void tmNuevoArt_Click(object sender, EventArgs e)
+        {
+            FrmAltaArt frmAltaArt = new FrmAltaArt(this);
+            frmAltaArt.ShowDialog();
         }
     }
 }

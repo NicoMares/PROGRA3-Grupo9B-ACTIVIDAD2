@@ -79,14 +79,14 @@ namespace Logica
             try
             {
 
-                conexion.Consulta("select Codigo, Nombre  from ARTICULOS"); //Declaramos el query
+                conexion.Consulta("select Id, Codigo, Nombre  from ARTICULOS"); //Declaramos el query
                 conexion.Ejecutar();
 
                 while (conexion.Lector.Read())
                 {
                     E_Articulo aux = new E_Articulo(); // creamos el objeto para guardar los datos que leemos
 
-                   
+                    aux.IdArt = (int)conexion.Lector["Id"]; //Indicamos el objeto con el dato a leer y parseamos el dato ya que lo lee como obj
                     aux.Codigo = (string)conexion.Lector["Codigo"]; //Indicamos el objeto con el dato a leer y parseamos el dato ya que lo lee como obj
                     aux.Nombre = (string)conexion.Lector["Nombre"];
                    
@@ -156,8 +156,50 @@ namespace Logica
 
             }
 
+        }
 
+        public E_Articulo ListarPorID(int id)
+        {
+            E_Articulo aux = new E_Articulo();
+            ConexionSql conexion = new ConexionSql();
 
+            try
+            {
+                conexion.Consulta(@"SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, a.Precio,
+                                   c.Descripcion AS Categoria,
+                                   m.Descripcion AS Marca,
+                                   ISNULL(i.ImagenUrl, '') AS ImagenUrl
+                            FROM ARTICULOS a
+                            LEFT JOIN CATEGORIAS c ON c.Id = a.IdCategoria
+                            LEFT JOIN MARCAS m ON m.Id = a.IdMarca
+                            LEFT JOIN IMAGENES i ON i.IdArticulo = a.Id
+                            WHERE a.Id = @id");  // 👈 Filtro por ID
+
+                conexion.SetParametros("@id", id);       // 👈 Paso el valor del parámetro
+                conexion.Ejecutar();
+
+                if (conexion.Lector.Read())  // Usamos if porque solo esperamos un resultado
+                {
+                    aux.IdArt = (int)conexion.Lector["Id"];
+                    aux.Codigo = (string)conexion.Lector["Codigo"];
+                    aux.Nombre = (string)conexion.Lector["Nombre"];
+                    aux.Descripcion = (string)conexion.Lector["Descripcion"];
+                    aux.Precio = (decimal)conexion.Lector["Precio"];
+                    aux.Marca = new E_Marca { Descripcion = (string)conexion.Lector["Marca"] };
+                    aux.Categoria = new E_Categoria { Descripcion = (string)conexion.Lector["Categoria"] };
+                    aux.ImagenUrl = new E_Imagen { ImagenUrl = (string)conexion.Lector["ImagenUrl"] };
+                }
+
+                return aux;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
         }
 
 
@@ -275,7 +317,6 @@ namespace Logica
 
             }
 
-
         }
 
 
@@ -327,10 +368,6 @@ namespace Logica
             finally
             {
                 conexion.cerrarConexion();
-
-
-
-
 
             }
         }

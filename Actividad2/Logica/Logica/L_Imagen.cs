@@ -31,9 +31,41 @@ namespace Logica.Logica
 
                 MessageBox.Show(ex.ToString());
             }
-
-
-
         }
+
+        public List<E_Imagen> ListarImagenesPorID(int id)
+        {
+            List<E_Imagen> listaImagenes = new List<E_Imagen>();
+            ConexionSql conexion = new ConexionSql();
+
+            try
+            {
+                
+                conexion.Consulta(@"SELECT ImagenUrl FROM IMAGENES  WHERE IdArticulo = @id");
+
+                conexion.SetParametros("@id", id);  
+                conexion.Ejecutar();
+
+                while (conexion.Lector.Read())  
+                {
+                    E_Imagen imagen = new E_Imagen();
+                    imagen.ImagenUrl = (string)conexion.Lector["ImagenUrl"];
+                    listaImagenes.Add(imagen);  
+                }
+
+                return listaImagenes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();  
+            }
+        }
+
+
+
     }
 }
