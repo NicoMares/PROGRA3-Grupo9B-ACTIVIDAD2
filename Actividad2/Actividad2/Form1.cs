@@ -24,18 +24,17 @@ namespace Actividad2
             InitializeComponent();
         }
 
-   
+
         private void Form1_Load(object sender, EventArgs e)
         {
             btnVolver.Visible = false;
             dgvArticulos.Visible = false;
-            btnAnterior.Visible = false;   
+            btnAnterior.Visible = false;
             btnProximo.Visible = false;
 
             CargarGrilla();
             cboCampo.Items.Add("Codigo");
             cboCampo.Items.Add("Nombre");
-            cboCampo.Items.Add("Descripcion");
 
         }
         public void CargarGrilla()
@@ -74,7 +73,7 @@ namespace Actividad2
             L_Articulo logica = new L_Articulo();
             E_Articulo art = new E_Articulo();
             art = logica.ListarPorID(id);
-            List <E_Articulo> lista = new List <E_Articulo>();  
+            List<E_Articulo> lista = new List<E_Articulo>();
             lista.Add(art);
             dgvArt.Visible = false;
             dgvArticulos.DataSource = lista;
@@ -87,6 +86,8 @@ namespace Actividad2
             btnProximo.Visible = true;
             tmiAcciones.Visible = false;
             btnActualizar.Visible = false;
+            lblFiltro.Visible = false;
+            txtFiltro.Visible = false;
 
         }
 
@@ -94,43 +95,44 @@ namespace Actividad2
         {
             cboCriterio.Items.Clear();
             cboCriterio.Items.Add("Contiene");
-            cboCriterio.Items.Add("Comienza con ");
-            cboCriterio.Items.Add("Termina con ");
+            cboCriterio.Items.Add("Comienza con");
+            cboCriterio.Items.Add("Termina con");
 
         }
 
         private void txtFiltro_TextChanged(object sender, EventArgs e)
         {
-            /// filtro
-        }
+            List<E_Articulo> listaFiltrada;
 
+            if (txtFiltro.Text != "")
+            {
 
-        private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+                listaFiltrada = articulos.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            }
+            else
+            {
+                listaFiltrada = articulos;
+            }
 
-        }
-
-        private void cboCriterio_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pbArticulos(object sender, EventArgs e)
-        {
-
+            dgvArt.DataSource = null;
+            CargarGrilla(listaFiltrada);
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
             try
             {
-                E_Articulo seleccionada = (E_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-                int id = seleccionada.IdArt;
-                List<E_Imagen> lista = new List<E_Imagen>(); 
-                L_Imagen imagen = new L_Imagen();
-                lista = imagen.ListarImagenesPorID(id);
+                if (dgvArticulos.CurrentRow != null)
+                {
+                    E_Articulo seleccionada = (E_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                    int id = seleccionada.IdArt;
+                    List<E_Imagen> lista = new List<E_Imagen>();
+                    L_Imagen imagen = new L_Imagen();
+                    lista = imagen.ListarImagenesPorID(id);
 
-                CargarImagen(lista);
+                    CargarImagen(lista);
+
+                }
             }
             catch (Exception ex)
             {
@@ -152,8 +154,6 @@ namespace Actividad2
 
             try
             {
-                
-                
                 pbxArt.Load(imagenesArt[indiceImg].ImagenUrl);
             }
 
@@ -167,6 +167,7 @@ namespace Actividad2
         {
             CargarGrilla();
             txtFiltro.Clear();
+            txtFiltroAvz.Clear();
         }
         private void btnVolver_Click(object sender, EventArgs e)
         {
@@ -179,6 +180,8 @@ namespace Actividad2
             indiceImg = 0;
             btnActualizar.Visible = true;
             tmiAcciones.Visible = true;
+            lblFiltro.Visible = true;
+            txtFiltro.Visible = true;
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
@@ -201,19 +204,17 @@ namespace Actividad2
 
         private void dgvArt_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-    
-                dgvArticulos.Visible = true;
-                btnVolver.Visible = true;
-                int idSeleccionado = ((E_Articulo)dgvArt.Rows[e.RowIndex].DataBoundItem).IdArt;
 
-                CargarDetallesIndividual(idSeleccionado);
-            
+            dgvArticulos.Visible = true;
+            btnVolver.Visible = true;
+            int idSeleccionado = ((E_Articulo)dgvArt.Rows[e.RowIndex].DataBoundItem).IdArt;
+
+            CargarDetallesIndividual(idSeleccionado);
+
         }
 
         private void tmNuevoArt_Click(object sender, EventArgs e)
         {
-
-            
 
             FrmAltaArt frmAltaArt = new FrmAltaArt();
             frmAltaArt.ShowDialog();
@@ -233,7 +234,7 @@ namespace Actividad2
             L_Articulo l_Articulo = new L_Articulo(); // creamos el obj de la logica art para usar las fuciones
             seleccionado = (E_Articulo)dgvArt.CurrentRow.DataBoundItem; //seleccionamos el elemento de la grid
             seleccionado = l_Articulo.ListarPorID(seleccionado.IdArt); //llamamos al obj logica, usamos el meotodo para obtener los datos y se lo pasamos al obj art
-            
+
             FrmAltaArt modificar = new FrmAltaArt(seleccionado);
             modificar.ShowDialog();
             CargarGrilla();
@@ -247,7 +248,6 @@ namespace Actividad2
                 MessageBox.Show("Por favor seleccioná un artículo.");
                 return;
             }
-
 
             DialogResult resultado = MessageBox.Show("¿Estás seguro de que querés eliminar este producto?",
                                                      "Confirmar eliminación",
@@ -271,20 +271,24 @@ namespace Actividad2
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            List<E_Articulo> listaFiltrada;
-            
-            if (txtFiltro.Text != "")
+            L_Articulo l_Articulo = new L_Articulo();
+
+            try
+            {
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cboCriterio.SelectedItem.ToString();
+                string filtro = txtFiltroAvz.Text;
+                CargarGrilla( l_Articulo.Filtro(campo, criterio, filtro));
+
+            }
+            catch (Exception ex)
             {
 
-                listaFiltrada = articulos.FindAll(x => x.Nombre == txtFiltro.Text);
-            }
-            else
-            {
-                listaFiltrada = articulos;
+                MessageBox.Show(ex.ToString());
             }
 
-            dgvArt.DataSource = null;
-            CargarGrilla(listaFiltrada);
         }
+
+
     }
 }

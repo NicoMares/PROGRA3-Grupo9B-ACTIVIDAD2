@@ -72,12 +72,12 @@ namespace Logica
 
             try
             {
-                conexion.Consulta(@"select a.Id, c.id as IdCategoria, m.id as IdMarca, a.Codigo, a.Nombre, a.Descripcion, a.Precio, c.Descripcion Categoria, m.Descripcion Marca, isnull (i.ImagenUrl, '') ImagenUrl from ARTICULOS a left join CATEGORIAS c on c.Id = a.IdCategoria left join MARCAS m on m.Id = a.IdMarca left join IMAGENES i on i.IdArticulo = a.Id WHERE a.Id = @id"); 
+                conexion.Consulta(@"select a.Id, c.id as IdCategoria, m.id as IdMarca, a.Codigo, a.Nombre, a.Descripcion, a.Precio, c.Descripcion Categoria, m.Descripcion Marca, isnull (i.ImagenUrl, '') ImagenUrl from ARTICULOS a left join CATEGORIAS c on c.Id = a.IdCategoria left join MARCAS m on m.Id = a.IdMarca left join IMAGENES i on i.IdArticulo = a.Id WHERE a.Id = @id");
 
-                conexion.SetParametros("@id", id);       
+                conexion.SetParametros("@id", id);
                 conexion.Ejecutar();
 
-                if (conexion.Lector.Read())  
+                if (conexion.Lector.Read())
                 {
                     aux.IdArt = (int)conexion.Lector["Id"];
                     aux.IdCategoria = (int)conexion.Lector["IdCategoria"];
@@ -104,16 +104,72 @@ namespace Logica
         }
 
 
-
-
         public List<E_Articulo> Filtro(string campo, string criterio, string filtro)
         {
 
-            List<E_Articulo> Lista_Articulo = new List<E_Articulo>();
+            List<E_Articulo> listaArt = new List<E_Articulo>(); // instanciamos la lista
+            ConexionSql conexion = new ConexionSql();
+
             try
             {
 
-                return Lista_Articulo;
+                string query = ("select a.Id, c.id as IdCategoria, m.id as IdMarca, a.Codigo, a.Nombre, a.Descripcion, a.Precio, c.Descripcion Categoria, m.Descripcion Marca, isnull (i.ImagenUrl, '') ImagenUrl from ARTICULOS a left join CATEGORIAS c on c.Id = a.IdCategoria left join MARCAS m on m.Id = a.IdMarca left join IMAGENES i on i.IdArticulo = a.Id WHERE ");
+
+                if (campo == "Codigo")
+                {
+                    switch (criterio)
+                    {
+
+                        case "Contiene":
+
+                            query += "a.Codigo like '%" + filtro + "%'";
+                            break;
+                        case "Comienza con":
+                            query += "a.Codigo like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            query += "a.Codigo like '%" + filtro + "'";
+                            break;
+
+                    }
+                }
+                else if (campo == "Nombre")
+                {
+                    switch (criterio)
+                    {
+                        case "Contiene":
+
+                            query += "a.Nombre like '%" + filtro + "%'";
+                            break;
+                        case "Comienza con":
+                            query += "a.Nombre like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            query += "a.Nombre like '%" + filtro + "'";
+                            break;
+                    }
+                }
+
+                conexion.Consulta(query);
+                conexion.Ejecutar();
+
+                while (conexion.Lector.Read())
+                {
+                    E_Articulo aux = new E_Articulo();
+                    aux.IdArt = (int)conexion.Lector["Id"];
+                    aux.IdCategoria = (int)conexion.Lector["IdCategoria"];
+                    aux.IdMarca = (int)conexion.Lector["IdMarca"];
+                    aux.Codigo = (string)conexion.Lector["Codigo"];
+                    aux.Nombre = (string)conexion.Lector["Nombre"];
+                    aux.Descripcion = (string)conexion.Lector["Descripcion"];
+                    aux.Precio = (decimal)conexion.Lector["Precio"];
+                    aux.Marca = new E_Marca { Descripcion = (string)conexion.Lector["Marca"] };
+                    aux.Categoria = new E_Categoria { Descripcion = (string)conexion.Lector["Categoria"] };
+                    aux.ImagenUrl = new E_Imagen { ImagenUrl = (string)conexion.Lector["ImagenUrl"] };
+                    listaArt.Add(aux);
+                }
+
+                return listaArt;
 
 
 
@@ -124,41 +180,6 @@ namespace Logica
                 throw;
             }
             throw new NotImplementedException();
-        }
-
-        public List<E_Imagen> ListarImagenes(int IdArticulo)
-        {
-            List<E_Imagen> lista = new List<E_Imagen>();
-            ConexionSql conexion = new ConexionSql();
-
-            try
-            {
-                conexion.Consulta("SELECT Id, IdArticulo, ImagenUrl FROM IMAGENES WHERE IdArticulo = @IdArticulo");
-                conexion.SetParametros("@IdArticulo", IdArticulo);
-
-                conexion.Ejecutar();
-
-                while (conexion.Lector.Read())
-                {
-                    E_Imagen imagen = new E_Imagen();
-
-                    imagen.Id = (int)conexion.Lector["Id"];
-                    imagen.IdArticulo = (int)conexion.Lector["IdArticulo"];
-                    imagen.ImagenUrl = (string)conexion.Lector["ImagenUrl"];
-
-                    lista.Add(imagen);
-                }
-
-                return lista;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                conexion.cerrarConexion();
-            }
         }
 
         public void Agregar(E_Articulo articulo)
@@ -205,7 +226,6 @@ namespace Logica
 
                 return aux.IdArt = (int)conexion.Lector["Id"];
 
-
             }
             catch (Exception ex)
             {
@@ -219,9 +239,6 @@ namespace Logica
             }
 
         }
-
-
-
         public void EliminarFisico(int idArticulo)
         {
             ConexionSql conexion = new ConexionSql();
@@ -272,6 +289,7 @@ namespace Logica
 
             }
         }
+
 
     }
 
