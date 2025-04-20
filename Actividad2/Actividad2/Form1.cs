@@ -204,7 +204,7 @@ namespace Actividad2
 
         private void dgvArt_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (e.RowIndex < 0) return;
             dgvArticulos.Visible = true;
             btnVolver.Visible = true;
             int idSeleccionado = ((E_Articulo)dgvArt.Rows[e.RowIndex].DataBoundItem).IdArt;
