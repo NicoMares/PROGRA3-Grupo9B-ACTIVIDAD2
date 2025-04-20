@@ -32,8 +32,10 @@ namespace Actividad2
             btnAnterior.Visible = false;   
             btnProximo.Visible = false;
 
-
             CargarGrilla();
+            cboCampo.Items.Add("Codigo");
+            cboCampo.Items.Add("Nombre");
+            cboCampo.Items.Add("Descripcion");
 
         }
         public void CargarGrilla()
