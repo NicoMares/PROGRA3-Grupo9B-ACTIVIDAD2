@@ -35,7 +35,7 @@
             this.cboCampo = new System.Windows.Forms.ComboBox();
             this.cboCriterio = new System.Windows.Forms.ComboBox();
             this.txtFiltro = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.pbxArt = new System.Windows.Forms.PictureBox();
             this.btnAnterior = new System.Windows.Forms.Button();
             this.btnProximo = new System.Windows.Forms.Button();
@@ -43,7 +43,7 @@
             this.dgvArt = new System.Windows.Forms.DataGridView();
             this.btnVolver = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.accionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiAcciones = new System.Windows.Forms.ToolStripMenuItem();
             this.tmNuevoArt = new System.Windows.Forms.ToolStripMenuItem();
             this.tmModificarArt = new System.Windows.Forms.ToolStripMenuItem();
             this.tmEliminarArt = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,15 +123,15 @@
             this.txtFiltro.TabIndex = 6;
             this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
             // 
-            // button1
+            // btnBuscar
             // 
-            this.button1.Location = new System.Drawing.Point(585, 27);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Buscar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.BuscarFiltrado);
+            this.btnBuscar.Location = new System.Drawing.Point(585, 27);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar.TabIndex = 11;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // pbxArt
             // 
@@ -203,22 +203,22 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.accionesToolStripMenuItem});
+            this.tmiAcciones});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(670, 24);
             this.menuStrip1.TabIndex = 18;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // accionesToolStripMenuItem
+            // tmiAcciones
             // 
-            this.accionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tmiAcciones.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmNuevoArt,
             this.tmModificarArt,
             this.tmEliminarArt});
-            this.accionesToolStripMenuItem.Name = "accionesToolStripMenuItem";
-            this.accionesToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.accionesToolStripMenuItem.Text = "Acciones";
+            this.tmiAcciones.Name = "tmiAcciones";
+            this.tmiAcciones.Size = new System.Drawing.Size(67, 20);
+            this.tmiAcciones.Text = "Acciones";
             // 
             // tmNuevoArt
             // 
@@ -252,7 +252,7 @@
             this.Controls.Add(this.btnProximo);
             this.Controls.Add(this.btnAnterior);
             this.Controls.Add(this.pbxArt);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.cboCriterio);
             this.Controls.Add(this.cboCampo);
@@ -285,7 +285,6 @@
         private System.Windows.Forms.ComboBox cboCriterio;
         private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pbxArt;
         private System.Windows.Forms.Button btnAnterior;
         private System.Windows.Forms.Button btnProximo;
@@ -293,7 +292,7 @@
         private System.Windows.Forms.DataGridView dgvArt;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem accionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tmiAcciones;
         private System.Windows.Forms.ToolStripMenuItem tmNuevoArt;
         private System.Windows.Forms.ToolStripMenuItem tmModificarArt;
         private System.Windows.Forms.ToolStripMenuItem tmEliminarArt;

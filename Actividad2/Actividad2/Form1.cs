@@ -54,6 +54,21 @@ namespace Actividad2
 
         }
 
+        public void CargarGrilla(List<E_Articulo> lista)
+        {
+
+            dgvArt.DataSource = lista;
+            dgvArt.Columns["IdArt"].Visible = false;
+            dgvArt.Columns["IdCategoria"].Visible = false;
+            dgvArt.Columns["IdMarca"].Visible = false;
+            dgvArt.Columns["Descripcion"].Visible = false;
+            dgvArt.Columns["Precio"].Visible = false;
+            dgvArt.Columns["Marca"].Visible = false;
+            dgvArt.Columns["Categoria"].Visible = false;
+            dgvArt.Columns["ImagenUrl"].Visible = false;
+
+        }
+
         public void CargarDetallesIndividual(int id)
         {
             L_Articulo logica = new L_Articulo();
@@ -70,6 +85,7 @@ namespace Actividad2
             dgvArticulos.Columns["IdCategoria"].Visible = false;
             btnAnterior.Visible = true;
             btnProximo.Visible = true;
+            tmiAcciones.Visible = false;
             btnActualizar.Visible = false;
 
         }
@@ -99,33 +115,6 @@ namespace Actividad2
 
         }
 
-        private void EliminarProducto(object sender, EventArgs e)
-        {
-            // Mostrar mensaje de confirmación
-            DialogResult resultado = MessageBox.Show("¿Estás seguro de que querés eliminar este producto?",
-                                                     "Confirmar eliminación",
-                                                     MessageBoxButtons.YesNo,
-                                                     MessageBoxIcon.Question);
-
-            if (resultado == DialogResult.Yes)
-            {
-                L_Articulo logica = new L_Articulo();
-                E_Articulo eliminar = (E_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-                logica.EliminarFisico(eliminar.IdArt);
-                CargarGrilla();
-
-            }
-            else
-            {
-                // El usuario eligio no
-                MessageBox.Show("El producto no fue eliminado.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void BuscarFiltrado(object sender, EventArgs e)
-        {
-
-        }
         private void pbArticulos(object sender, EventArgs e)
         {
 
@@ -175,19 +164,8 @@ namespace Actividad2
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             CargarGrilla();
+            txtFiltro.Clear();
         }
-
-        //private void dgvArt_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    dgvArticulos.Visible = true;
-        //    btnVolver.Visible = true;
-        //    btnActualizar.Visible = false;
-
-        //    int idSeleccionado = ((E_Articulo)dgvArt.Rows[e.RowIndex].DataBoundItem).IdArt;
-
-        //    CargarDetallesIndividual(idSeleccionado);
-        //}
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
             dgvArt.Visible = true;
@@ -198,6 +176,7 @@ namespace Actividad2
             btnProximo.Visible = false;
             indiceImg = 0;
             btnActualizar.Visible = true;
+            tmiAcciones.Visible = true;
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
@@ -269,6 +248,24 @@ namespace Actividad2
                 // El usuario eligio no
                 MessageBox.Show("El producto no fue eliminado.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            List<E_Articulo> listaFiltrada;
+            
+            if (txtFiltro.Text != "")
+            {
+
+                listaFiltrada = articulos.FindAll(x => x.Nombre == txtFiltro.Text);
+            }
+            else
+            {
+                listaFiltrada = articulos;
+            }
+
+            dgvArt.DataSource = null;
+            CargarGrilla(listaFiltrada);
         }
     }
 }
