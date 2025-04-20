@@ -161,6 +161,8 @@ namespace Actividad2
 
             try
             {
+                
+                
                 pbxArt.Load(imagenesArt[indiceImg].ImagenUrl);
             }
 
@@ -229,6 +231,9 @@ namespace Actividad2
 
         private void tmNuevoArt_Click(object sender, EventArgs e)
         {
+
+            
+
             FrmAltaArt frmAltaArt = new FrmAltaArt();
             frmAltaArt.ShowDialog();
             CargarGrilla();
@@ -236,6 +241,13 @@ namespace Actividad2
 
         private void tmModificarArt_Click(object sender, EventArgs e)
         {
+            if (dgvArt.CurrentRow == null)
+            {
+                MessageBox.Show("Por favor seleccioná un artículo.");
+                return;
+            }
+
+
             E_Articulo seleccionado; // creamos el objeto art
             L_Articulo l_Articulo = new L_Articulo(); // creamos el obj de la logica art para usar las fuciones
             seleccionado = (E_Articulo)dgvArt.CurrentRow.DataBoundItem; //seleccionamos el elemento de la grid
@@ -248,7 +260,14 @@ namespace Actividad2
 
         private void tmEliminarArt_Click(object sender, EventArgs e)
         {
-            // Mostrar mensaje de confirmación
+
+            if (dgvArt.CurrentRow == null)
+            {
+                MessageBox.Show("Por favor seleccioná un artículo.");
+                return;
+            }
+
+
             DialogResult resultado = MessageBox.Show("¿Estás seguro de que querés eliminar este producto?",
                                                      "Confirmar eliminación",
                                                      MessageBoxButtons.YesNo,
