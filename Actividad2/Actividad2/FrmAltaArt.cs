@@ -122,11 +122,16 @@ namespace Actividad2
 
             try
             {
+                if(string.IsNullOrEmpty(imagen))
+                {
+                    pbxImgAlta.Load("https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png");
+                    return;
+                }
                 pbxImgAlta.Load(imagen);
             }
-            catch
+            catch(Exception)
             {
-                pbxImgAlta.Load("https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png");
+                throw;
             }
         }
     }
