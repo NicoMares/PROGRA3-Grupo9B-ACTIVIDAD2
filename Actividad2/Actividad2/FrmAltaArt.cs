@@ -44,23 +44,30 @@ namespace Actividad2
                 if (art == null)
                 {
                     E_Articulo art = new E_Articulo(); // intancio el objeto de tipo art para setear los atributos
-                }
                 art.Codigo = txtCodigo.Text;
                 art.Nombre = txtNombre.Text;
                 art.Descripcion = txtDescripcion.Text;
                 art.Precio = decimal.Parse(txtPrecio.Text);
                 art.Marca = (E_Marca)cboMarca.SelectedItem;
                 art.Categoria = (E_Categoria)cboCategoria.SelectedItem;
-                if (art.IdArt != 0)
-                {
-
-                    l_Articulo.Agregar(art);
+                l_Articulo.Agregar(art);
                     int idArt = l_Articulo.UltimoId();
                     string url = txtUrl.Text;
                     l_Imagen.AgregarImg(idArt, url);
                     MessageBox.Show("Articulo agregado con exito !");
                 }
-                l_Articulo.Modificar(art);
+                else if (art.IdArt != 0)
+                {
+                    art.Codigo = txtCodigo.Text;
+                    art.Nombre = txtNombre.Text;
+                    art.Descripcion = txtDescripcion.Text;
+                    art.Precio = decimal.Parse(txtPrecio.Text);
+                    art.Marca = (E_Marca)cboMarca.SelectedItem;
+                    art.Categoria = (E_Categoria)cboCategoria.SelectedItem;
+                    string url = txtUrl.Text;
+                    l_Articulo.Modificar(art);
+                    MessageBox.Show("Articulo modificado con exito !");
+                }
 
 
                 Close();
