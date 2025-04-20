@@ -172,7 +172,7 @@ namespace Actividad2
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            
+            CargarGrilla();
         }
 
         //private void dgvArt_CellContentClick(object sender, DataGridViewCellEventArgs e)
