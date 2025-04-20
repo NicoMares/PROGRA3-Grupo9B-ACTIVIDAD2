@@ -239,6 +239,7 @@
             this.tmEliminarArt.Name = "tmEliminarArt";
             this.tmEliminarArt.Size = new System.Drawing.Size(170, 22);
             this.tmEliminarArt.Text = "Eliminar Articulo";
+            this.tmEliminarArt.Click += new System.EventHandler(this.tmEliminarArt_Click);
             // 
             // frmPrincipal
             // 

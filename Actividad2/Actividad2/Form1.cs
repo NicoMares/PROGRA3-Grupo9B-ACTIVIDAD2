@@ -32,10 +32,9 @@ namespace Actividad2
             btnAnterior.Visible = false;   
             btnProximo.Visible = false;
 
+
             CargarGrilla();
-            cboCampo.Items.Add("Codigo");
-            cboCampo.Items.Add("Nombre");
-            cboCampo.Items.Add("Descripcion");
+
         }
         public void CargarGrilla()
         {
@@ -50,11 +49,11 @@ namespace Actividad2
             dgvArt.Columns["Marca"].Visible = false;
             dgvArt.Columns["Categoria"].Visible = false;
             dgvArt.Columns["ImagenUrl"].Visible = false;
+
         }
 
         public void CargarDetallesIndividual(int id)
         {
-
             L_Articulo logica = new L_Articulo();
             E_Articulo art = new E_Articulo();
             art = logica.ListarPorID(id);
@@ -62,6 +61,7 @@ namespace Actividad2
             lista.Add(art);
             dgvArt.Visible = false;
             dgvArticulos.DataSource = lista;
+
             dgvArticulos.Columns["IdArt"].Visible = false;
             dgvArticulos.Columns["ImagenUrl"].Visible = false;
             dgvArticulos.Columns["IdMarca"].Visible = false;
@@ -96,6 +96,30 @@ namespace Actividad2
         {
 
         }
+
+        private void EliminarProducto(object sender, EventArgs e)
+        {
+            // Mostrar mensaje de confirmación
+            DialogResult resultado = MessageBox.Show("¿Estás seguro de que querés eliminar este producto?",
+                                                     "Confirmar eliminación",
+                                                     MessageBoxButtons.YesNo,
+                                                     MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                L_Articulo logica = new L_Articulo();
+                E_Articulo eliminar = (E_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                logica.EliminarFisico(eliminar.IdArt);
+                CargarGrilla();
+
+            }
+            else
+            {
+                // El usuario eligio no
+                MessageBox.Show("El producto no fue eliminado.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         private void BuscarFiltrado(object sender, EventArgs e)
         {
 
@@ -139,7 +163,8 @@ namespace Actividad2
             {
                 pbxArt.Load(imagenesArt[indiceImg].ImagenUrl);
             }
-            catch
+
+            catch (Exception)
             {
                 pbxArt.Load("https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png");
             }
@@ -147,7 +172,7 @@ namespace Actividad2
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            CargarGrilla();
+            
         }
 
         //private void dgvArt_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -219,6 +244,29 @@ namespace Actividad2
             FrmAltaArt modificar = new FrmAltaArt(seleccionado);
             modificar.ShowDialog();
             CargarGrilla();
+        }
+
+        private void tmEliminarArt_Click(object sender, EventArgs e)
+        {
+            // Mostrar mensaje de confirmación
+            DialogResult resultado = MessageBox.Show("¿Estás seguro de que querés eliminar este producto?",
+                                                     "Confirmar eliminación",
+                                                     MessageBoxButtons.YesNo,
+                                                     MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                L_Articulo logica = new L_Articulo();
+                E_Articulo eliminar = (E_Articulo)dgvArt.CurrentRow.DataBoundItem;
+                logica.EliminarFisico(eliminar.IdArt);
+                CargarGrilla();
+
+            }
+            else
+            {
+                // El usuario eligio no
+                MessageBox.Show("El producto no fue eliminado.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
