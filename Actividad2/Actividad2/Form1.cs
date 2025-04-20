@@ -33,9 +33,7 @@ namespace Actividad2
             btnProximo.Visible = false;
 
             CargarGrilla();
-            cboCampo.Items.Add("Codigo");
-            cboCampo.Items.Add("Nombre");
-            cboCampo.Items.Add("Descripcion");
+
         }
         public void CargarGrilla()
         {
@@ -54,7 +52,6 @@ namespace Actividad2
 
         public void CargarDetallesIndividual(int id)
         {
-
             L_Articulo logica = new L_Articulo();
             E_Articulo art = new E_Articulo();
             art = logica.ListarPorID(id);
@@ -69,6 +66,7 @@ namespace Actividad2
             btnAnterior.Visible = true;
             btnProximo.Visible = true;
             btnActualizar.Visible = false;
+
 
         }
 
