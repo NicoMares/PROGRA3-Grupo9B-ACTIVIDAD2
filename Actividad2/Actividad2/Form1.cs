@@ -257,8 +257,10 @@ namespace Actividad2
             if (resultado == DialogResult.Yes)
             {
                 L_Articulo logica = new L_Articulo();
+                L_Imagen l_Imagen = new L_Imagen();
                 E_Articulo eliminar = (E_Articulo)dgvArt.CurrentRow.DataBoundItem;
                 logica.EliminarFisico(eliminar.IdArt);
+                l_Imagen.EliminarFisico(eliminar.IdArt);
                 CargarGrilla();
 
             }

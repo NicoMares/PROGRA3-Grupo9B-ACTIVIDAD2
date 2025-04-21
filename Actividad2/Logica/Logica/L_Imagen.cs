@@ -65,7 +65,25 @@ namespace Logica.Logica
             }
         }
 
+        public void EliminarFisico(int idArticulo)
+        {
+            ConexionSql conexion = new ConexionSql();
 
+            try
+            {
+                conexion.Consulta("DELETE FROM IMAGENES WHERE IdArticulo = @Id");
+                conexion.SetParametros("@Id", idArticulo);
+                conexion.Ejecutar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
 
     }
 }
