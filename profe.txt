@@ -1,0 +1,1 @@
+nos falto el gestion marca y categoria, porque vimos que teniamos que hacer eso muy sobre la hora, igualemente dejamos el bosquejo de como seria, que tan poco seria tanto (un par de sql query y listo)
