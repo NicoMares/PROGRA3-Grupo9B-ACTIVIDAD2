@@ -279,6 +279,9 @@ namespace Actividad2
                 string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = txtFiltroAvz.Text;
                 CargarGrilla( l_Articulo.Filtro(campo, criterio, filtro));
+                cboCampo.Items.Clear();
+                cboCriterio.Items.Clear();
+                txtFiltroAvz.Clear();
 
             }
             catch (Exception ex)
@@ -289,6 +292,19 @@ namespace Actividad2
 
         }
 
+        private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAgregar agregar = new frmAgregar();
+            agregar.Tipo = "Marca";
+            agregar.ShowDialog();
 
+        }
+
+        private void agregarCategoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAgregar agregar = new frmAgregar();
+            agregar.Tipo = "Categoria";
+            agregar.ShowDialog();
+        }
     }
 }

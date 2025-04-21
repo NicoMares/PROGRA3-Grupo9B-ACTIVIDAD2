@@ -51,5 +51,29 @@ namespace Logica.Logica
 
         }
 
+        public void AgregarMarca(E_Marca marca)
+        {
+
+            ConexionSql conexion = new ConexionSql();
+
+            try
+            {
+                conexion.Consulta("insert into MARCA (Descripcion) values (@Descipcion)");
+
+                conexion.SetParametros("@Descripcion", marca.Descripcion);
+
+                conexion.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+
+        }
+
     }
 }

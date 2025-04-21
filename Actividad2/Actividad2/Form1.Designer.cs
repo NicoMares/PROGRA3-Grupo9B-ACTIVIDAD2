@@ -47,6 +47,10 @@
             this.tmNuevoArt = new System.Windows.Forms.ToolStripMenuItem();
             this.tmModificarArt = new System.Windows.Forms.ToolStripMenuItem();
             this.tmEliminarArt = new System.Windows.Forms.ToolStripMenuItem();
+            this.marcaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agregarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.categoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agregarCategoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtFiltroAvz = new System.Windows.Forms.TextBox();
             this.lblFiltroAvz = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
@@ -67,7 +71,6 @@
             this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticulos.Size = new System.Drawing.Size(646, 56);
             this.dgvArticulos.TabIndex = 0;
-
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
             // lblCriterio
@@ -115,7 +118,6 @@
             this.cboCriterio.Name = "cboCriterio";
             this.cboCriterio.Size = new System.Drawing.Size(121, 21);
             this.cboCriterio.TabIndex = 5;
-
             // 
             // txtFiltro
             // 
@@ -143,7 +145,6 @@
             this.pbxArt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxArt.TabIndex = 12;
             this.pbxArt.TabStop = false;
-
             // 
             // btnAnterior
             // 
@@ -187,7 +188,7 @@
             this.dgvArt.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArt.Size = new System.Drawing.Size(265, 345);
             this.dgvArt.TabIndex = 16;
-            this.dgvArt.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArt_CellClick);
+            this.dgvArt.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArt_CellClick);
             // 
             // btnVolver
             // 
@@ -205,7 +206,9 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tmiAcciones});
+            this.tmiAcciones,
+            this.marcaToolStripMenuItem,
+            this.categoriaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(670, 24);
@@ -219,8 +222,8 @@
             this.tmModificarArt,
             this.tmEliminarArt});
             this.tmiAcciones.Name = "tmiAcciones";
-            this.tmiAcciones.Size = new System.Drawing.Size(67, 20);
-            this.tmiAcciones.Text = "Acciones";
+            this.tmiAcciones.Size = new System.Drawing.Size(61, 20);
+            this.tmiAcciones.Text = "Articulo";
             // 
             // tmNuevoArt
             // 
@@ -242,6 +245,36 @@
             this.tmEliminarArt.Size = new System.Drawing.Size(170, 22);
             this.tmEliminarArt.Text = "Eliminar Articulo";
             this.tmEliminarArt.Click += new System.EventHandler(this.tmEliminarArt_Click);
+            // 
+            // marcaToolStripMenuItem
+            // 
+            this.marcaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.agregarToolStripMenuItem});
+            this.marcaToolStripMenuItem.Name = "marcaToolStripMenuItem";
+            this.marcaToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.marcaToolStripMenuItem.Text = "Marca";
+            // 
+            // agregarToolStripMenuItem
+            // 
+            this.agregarToolStripMenuItem.Name = "agregarToolStripMenuItem";
+            this.agregarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.agregarToolStripMenuItem.Text = "Agregar Marca";
+            this.agregarToolStripMenuItem.Click += new System.EventHandler(this.agregarToolStripMenuItem_Click);
+            // 
+            // categoriaToolStripMenuItem
+            // 
+            this.categoriaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.agregarCategoriaToolStripMenuItem});
+            this.categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
+            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.categoriaToolStripMenuItem.Text = "Categoria";
+            // 
+            // agregarCategoriaToolStripMenuItem
+            // 
+            this.agregarCategoriaToolStripMenuItem.Name = "agregarCategoriaToolStripMenuItem";
+            this.agregarCategoriaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.agregarCategoriaToolStripMenuItem.Text = "Agregar Categoria";
+            this.agregarCategoriaToolStripMenuItem.Click += new System.EventHandler(this.agregarCategoriaToolStripMenuItem_Click);
             // 
             // txtFiltroAvz
             // 
@@ -318,6 +351,10 @@
         private System.Windows.Forms.ToolStripMenuItem tmEliminarArt;
         private System.Windows.Forms.TextBox txtFiltroAvz;
         private System.Windows.Forms.Label lblFiltroAvz;
+        private System.Windows.Forms.ToolStripMenuItem marcaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem agregarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem categoriaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem agregarCategoriaToolStripMenuItem;
     }
 }
 

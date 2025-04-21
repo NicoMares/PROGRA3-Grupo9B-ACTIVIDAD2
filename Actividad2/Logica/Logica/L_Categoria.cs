@@ -47,5 +47,28 @@ namespace Logica.Logica
 
             }
         }
+
+        public void AgregarCategoria(E_Categoria categoria) {
+
+                ConexionSql conexion = new ConexionSql();
+
+                try
+                {
+                    conexion.Consulta("insert into CATEGORIAS (Descripcion) values (@Descipcion)");
+                    
+                    conexion.SetParametros("@Descripcion", categoria.Descripcion);
+
+                    conexion.EjecutarAccion();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    conexion.cerrarConexion();
+                }
+
+        }
     }
 }
