@@ -276,13 +276,27 @@ namespace Actividad2
             L_Articulo l_Articulo = new L_Articulo();
 
             try
-            {
+            {   
+                if(cboCampo.SelectedItem == null)
+                {
+                    MessageBox.Show("Por Favor, Seleccionar un campo");
+                    return;
+
+                }
                 string campo = cboCampo.SelectedItem.ToString();
+
+                if(cboCriterio.SelectedItem == null)
+                {
+                    MessageBox.Show("Por Favor, Seleccionar un criterio");
+                    return;
+                }
+
                 string criterio = cboCriterio.SelectedItem.ToString();
+
+      
                 string filtro = txtFiltroAvz.Text;
                 CargarGrilla( l_Articulo.Filtro(campo, criterio, filtro));
-                cboCampo.Items.Clear();
-                cboCriterio.Items.Clear();
+                
                 txtFiltroAvz.Clear();
 
             }
