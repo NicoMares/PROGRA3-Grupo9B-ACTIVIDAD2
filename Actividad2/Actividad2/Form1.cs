@@ -21,7 +21,7 @@ namespace Actividad2
         private List<E_Imagen> imagenesArt = new List<E_Imagen>();
         private int indiceImg = 0;
 
-        public string UrlCargado { get; set; } = "https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png";
+        public string UrlCargado { get; set; } = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg";
         public E_Articulo ArticuloSeleccionadoPrincipal { get; set; }
         public frmPrincipal()
         {
@@ -165,7 +165,7 @@ namespace Actividad2
 
             if (imagenesArt == null || imagenesArt.Count == 0)
             {
-                pbxArt.Load("https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png");
+                pbxArt.Load("https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg");
                 
 
             }
@@ -173,13 +173,13 @@ namespace Actividad2
             try
             {
                 pbxArt.Load(imagenesArt[indiceImg].ImagenUrl);
-                UrlCargado = imagenesArt[indiceImg].ImagenUrl;
+               UrlCargado = imagenesArt[indiceImg].ImagenUrl;
             }
 
             catch (Exception ex)
             {
                 Console.WriteLine("Error al cargar la imagen: " + ex.Message);
-                pbxArt.Load("https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png");
+                pbxArt.Load("https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg");
             }
         }
 
@@ -360,7 +360,7 @@ namespace Actividad2
             {
 
 
-                if(UrlCargado == "https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png")
+                if(UrlCargado == "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg")
                 {
                     MessageBox.Show("No se puede eliminar la imagen por defecto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
