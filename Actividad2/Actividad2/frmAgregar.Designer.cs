@@ -89,6 +89,7 @@
             this.lblCategoria.Size = new System.Drawing.Size(92, 13);
             this.lblCategoria.TabIndex = 5;
             this.lblCategoria.Text = "Agregar Categoria";
+            this.lblCategoria.Click += new System.EventHandler(this.lblCategoria_Click);
             // 
             // frmAgregar
             // 

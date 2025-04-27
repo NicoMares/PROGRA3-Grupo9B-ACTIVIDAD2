@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Logica.Logica
 {
@@ -24,20 +25,15 @@ namespace Logica.Logica
         {
             try
             {
-                //Conexion para base de datos con declaracion de usuario especifico con login de sql
-                // conexion.ConnectionString = "Server=ULARIAGA-BRAIAN\\LOCALHOST; Database= CATALOGO_P3_DB; User Id= sa; Password=Super123.adm "; /// Brian
+                conexion = new SqlConnection(@"Server=.\SQLEXPRESS;Database=WANNIMA;Integrated Security=True");
 
-                //Conexion para base de datos local con login de wind
-                conexion.ConnectionString = "Server=.\\SQLEXPRESS;  Database= CATALOGO_P3_DB; integrated security= true"; /// Andres & Nico
                 
-
+               
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                MessageBox.Show("Error al conectar a la base de datos: " + ex.Message);
             }
-
         }
 
         //Metodo para la consulta

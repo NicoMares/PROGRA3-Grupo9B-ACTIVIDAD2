@@ -49,12 +49,13 @@
             this.tmEliminarArt = new System.Windows.Forms.ToolStripMenuItem();
             this.marcaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminarMarcaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarCategoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminarCategoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtFiltroAvz = new System.Windows.Forms.TextBox();
             this.lblFiltroAvz = new System.Windows.Forms.Label();
-            this.eliminarMarcaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eliminarCategoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AgregarIMG = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArt)).BeginInit();
@@ -147,6 +148,7 @@
             this.pbxArt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxArt.TabIndex = 12;
             this.pbxArt.TabStop = false;
+            this.pbxArt.Click += new System.EventHandler(this.pbxArt_Click);
             // 
             // btnAnterior
             // 
@@ -260,9 +262,15 @@
             // agregarToolStripMenuItem
             // 
             this.agregarToolStripMenuItem.Name = "agregarToolStripMenuItem";
-            this.agregarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.agregarToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.agregarToolStripMenuItem.Text = "Agregar Marca";
             this.agregarToolStripMenuItem.Click += new System.EventHandler(this.agregarToolStripMenuItem_Click);
+            // 
+            // eliminarMarcaToolStripMenuItem
+            // 
+            this.eliminarMarcaToolStripMenuItem.Name = "eliminarMarcaToolStripMenuItem";
+            this.eliminarMarcaToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.eliminarMarcaToolStripMenuItem.Text = "Eliminar Marca";
             // 
             // categoriaToolStripMenuItem
             // 
@@ -276,9 +284,15 @@
             // agregarCategoriaToolStripMenuItem
             // 
             this.agregarCategoriaToolStripMenuItem.Name = "agregarCategoriaToolStripMenuItem";
-            this.agregarCategoriaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.agregarCategoriaToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.agregarCategoriaToolStripMenuItem.Text = "Agregar Categoria";
             this.agregarCategoriaToolStripMenuItem.Click += new System.EventHandler(this.agregarCategoriaToolStripMenuItem_Click);
+            // 
+            // eliminarCategoriaToolStripMenuItem
+            // 
+            this.eliminarCategoriaToolStripMenuItem.Name = "eliminarCategoriaToolStripMenuItem";
+            this.eliminarCategoriaToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.eliminarCategoriaToolStripMenuItem.Text = "Eliminar Categoria";
             // 
             // txtFiltroAvz
             // 
@@ -296,23 +310,22 @@
             this.lblFiltroAvz.TabIndex = 19;
             this.lblFiltroAvz.Text = "Filtro";
             // 
-            // eliminarMarcaToolStripMenuItem
+            // AgregarIMG
             // 
-            this.eliminarMarcaToolStripMenuItem.Name = "eliminarMarcaToolStripMenuItem";
-            this.eliminarMarcaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.eliminarMarcaToolStripMenuItem.Text = "Eliminar Marca";
-            // 
-            // eliminarCategoriaToolStripMenuItem
-            // 
-            this.eliminarCategoriaToolStripMenuItem.Name = "eliminarCategoriaToolStripMenuItem";
-            this.eliminarCategoriaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.eliminarCategoriaToolStripMenuItem.Text = "Eliminar Categoria";
+            this.AgregarIMG.Location = new System.Drawing.Point(76, 248);
+            this.AgregarIMG.Name = "AgregarIMG";
+            this.AgregarIMG.Size = new System.Drawing.Size(95, 23);
+            this.AgregarIMG.TabIndex = 21;
+            this.AgregarIMG.Text = "Agregar Imagen";
+            this.AgregarIMG.UseVisualStyleBackColor = true;
+            this.AgregarIMG.Click += new System.EventHandler(this.AgregarIM_Click);
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(670, 457);
+            this.Controls.Add(this.AgregarIMG);
             this.Controls.Add(this.txtFiltroAvz);
             this.Controls.Add(this.lblFiltroAvz);
             this.Controls.Add(this.btnVolver);
@@ -373,6 +386,7 @@
         private System.Windows.Forms.ToolStripMenuItem agregarCategoriaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarMarcaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarCategoriaToolStripMenuItem;
+        private System.Windows.Forms.Button AgregarIMG;
     }
 }
 

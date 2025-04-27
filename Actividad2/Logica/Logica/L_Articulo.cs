@@ -8,6 +8,7 @@ using System.Xml.Linq;
 using Entidades;
 using Logica.Logica;
 using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
 
 
 namespace Logica
@@ -17,52 +18,73 @@ namespace Logica
 
         public List<E_Articulo> Listar()
         {
-
-            List<E_Articulo> lista = new List<E_Articulo>(); // instanciamos la lista
+            List<E_Articulo> lista = new List<E_Articulo>();
             ConexionSql conexion = new ConexionSql();
+          
+            // Asegúrate de que la consulta esté bien formada y se esté ejecutando correctamente
+            
+            conexion.Consulta("SELECT A.Id, A.IdCategoria, A.IdMarca, A.Codigo, A.Nombre, A.Descripcion, A.Precio, " +
+                      "M.Descripcion AS Marca, C.Descripcion AS Categoria, I.ImagenUrl, I.Id " +
+                      "FROM ARTICULOS A " +
+                      "LEFT JOIN MARCAS M ON A.IdMarca = M.Id " +
+                      "LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id " +
+                      "LEFT JOIN IMAGENES I ON A.Id = I.Id");// Ajusta según tu tabla y columnas
 
+            // Ejecutar la consulta
             try
             {
+                  // Pasamos la consulta
 
-                conexion.Consulta("select a.Id, c.id as IdCategoria, m.id as IdMarca, a.Codigo, a.Nombre, a.Descripcion, a.Precio, c.Descripcion Categoria, m.Descripcion Marca, isnull (i.ImagenUrl, '') ImagenUrl from ARTICULOS a left join CATEGORIAS c on c.Id = a.IdCategoria left join MARCAS m on m.Id = a.IdMarca left join IMAGENES i on i.IdArticulo = a.Id"); //Declaramos el query
+                // Ejecutamos la consulta y leemos los resultados
                 conexion.Ejecutar();
 
-                while (conexion.Lector.Read())
+                // Si hay filas, las procesamos
+                if (conexion.Lector.HasRows)
                 {
-                    E_Articulo aux = new E_Articulo(); // creamos el objeto para guardar los datos que leemos
+                    while (conexion.Lector.Read())
+                    {
+                        E_Articulo aux = new E_Articulo();
 
-                    aux.IdArt = (int)conexion.Lector["Id"]; //Indicamos el objeto con el dato a leer y parseamos el dato ya que lo lee como obj
-                    aux.IdCategoria = (int)conexion.Lector["IdCategoria"];
-                    aux.IdMarca = (int)conexion.Lector["IdMarca"];
-                    aux.Codigo = (string)conexion.Lector["Codigo"]; //Indicamos el objeto con el dato a leer y parseamos el dato ya que lo lee como obj
-                    aux.Nombre = (string)conexion.Lector["Nombre"];
-                    aux.Descripcion = (string)conexion.Lector["Descripcion"];
-                    aux.Precio = (decimal)conexion.Lector["Precio"];
-                    aux.Marca = new E_Marca(); // instanciamos ya que marca es agregacion y no composicion | tambien se debio sobreescribir el tostring en la entidad
-                    aux.Marca.Descripcion = (string)conexion.Lector["Marca"];
-                    aux.Categoria = new E_Categoria();// instanciamos ya que marca es agregacion y no composicion  | tambien se debio sobreescribir el tostring en la entidad
-                    aux.Categoria.Descripcion = (string)conexion.Lector["Categoria"];
-                    aux.ImagenUrl = new E_Imagen();
-                    aux.ImagenUrl.ImagenUrl = (string)conexion.Lector["ImagenUrl"];
+                        // Verifica si el valor es nulo antes de asignar
+                        aux.IdArt = conexion.Lector["Id"] != DBNull.Value ? (int)conexion.Lector["Id"] : 0;
+                        aux.IdCategoria = conexion.Lector["IdCategoria"] != DBNull.Value ? (int)conexion.Lector["IdCategoria"] : 0;
+                        //aux.IdMarca = conexion.Lector["IdMarca"] != DBNull.Value ? (int)conexion.Lector["IdMarca"] : 0;
+                        aux.Codigo = conexion.Lector["Codigo"] != DBNull.Value ? (string)conexion.Lector["Codigo"] : string.Empty;
+                        aux.Nombre = conexion.Lector["Nombre"] != DBNull.Value ? (string)conexion.Lector["Nombre"] : string.Empty;
+                        aux.Descripcion = conexion.Lector["Descripcion"] != DBNull.Value ? (string)conexion.Lector["Descripcion"] : string.Empty;
+                        aux.Precio = conexion.Lector["Precio"] != DBNull.Value ? (decimal)conexion.Lector["Precio"] : 0;
 
+                         
+                       aux.Marca = new E_Marca();
+                        aux.Marca.Descripcion = conexion.Lector["Marca"] != DBNull.Value ? (string)conexion.Lector["Marca"] : string.Empty;
 
-                    lista.Add(aux); // agregamos el objeto leido a la lista
+                        aux.Categoria = new E_Categoria();
+                        aux.Categoria.Descripcion = conexion.Lector["Categoria"] != DBNull.Value ? (string)conexion.Lector["Categoria"] : string.Empty;
+                        aux.ImagenUrl = new E_Imagen();
+                        aux.ImagenUrl.Id = conexion.Lector["Id"] != DBNull.Value ? (int)conexion.Lector["Id"] : 0;
 
+                        //aux.ImagenUrl = new E_Imagen();
+                        // aux.ImagenUrl.ImagenUrl = conexion.Lector["ImagenUrl"] != DBNull.Value ? (string)conexion.Lector["ImagenUrl"] : string.Empty;
+
+                        // Agregar a la lista
+                        lista.Add(aux);
+                    }
                 }
-                return lista;
+                else
+                {
+                    MessageBox.Show("No se encontraron registros.");
+                }
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                MessageBox.Show("Error al listar los artículos: " + ex.Message);
             }
             finally
             {
-
-                conexion.cerrarConexion();
-
+                conexion.cerrarConexion(); // Asegúrate de cerrar la conexión
             }
 
+            return lista;
         }
 
         public E_Articulo ListarPorID(int id)

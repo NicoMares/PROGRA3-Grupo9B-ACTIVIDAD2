@@ -99,5 +99,10 @@ namespace Actividad2
                 lblCategoria.Visible = false;
             }
         }
+
+        private void lblCategoria_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

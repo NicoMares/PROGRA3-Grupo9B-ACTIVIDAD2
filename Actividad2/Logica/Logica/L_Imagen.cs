@@ -11,7 +11,7 @@ namespace Logica.Logica
 {
     public class L_Imagen
     {
-
+        
 
         public void AgregarImg(int id, string url)
         {
@@ -41,7 +41,7 @@ namespace Logica.Logica
             try
             {
                 
-                conexion.Consulta(@"SELECT ImagenUrl FROM IMAGENES  WHERE IdArticulo = @id");
+                conexion.Consulta(@"SELECT ImagenUrl, Id as IdImagen FROM IMAGENES  WHERE IdArticulo = @id");
 
                 conexion.SetParametros("@id", id);  
                 conexion.Ejecutar();
@@ -50,6 +50,7 @@ namespace Logica.Logica
                 {
                     E_Imagen imagen = new E_Imagen();
                     imagen.ImagenUrl = (string)conexion.Lector["ImagenUrl"];
+                    imagen.Id = (int)conexion.Lector["IdImagen"];
                     listaImagenes.Add(imagen);  
                 }
 
@@ -71,8 +72,8 @@ namespace Logica.Logica
 
             try
             {
-                conexion.Consulta("DELETE FROM IMAGENES WHERE IdArticulo = @Id");
-                conexion.SetParametros("@Id", idArticulo);
+                conexion.Consulta("DELETE FROM IMAGENES WHERE Id = @IdArticulo");
+                conexion.SetParametros("@IdArticulo", idArticulo);
                 conexion.Ejecutar();
             }
             catch (Exception ex)
@@ -84,6 +85,60 @@ namespace Logica.Logica
                 conexion.cerrarConexion();
             }
         }
+
+
+        public void EliminarFisico(string Imagen)
+        {
+            ConexionSql conexion = new ConexionSql();
+
+            try
+            {
+                conexion.Consulta("DELETE FROM IMAGENES WHERE ImagenUrl = @Url");
+                conexion.SetParametros("@Url",Imagen );
+                conexion.Ejecutar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+
+
+        public bool ExisteImagenEnBD(string url)
+        {
+            ConexionSql conexion = new ConexionSql();
+            try
+            {
+                // Consulta para verificar si la URL existe en la base de datos
+                conexion.Consulta("SELECT COUNT(*) FROM IMAGENES WHERE ImagenUrl = @Url");
+                conexion.SetParametros("@Url", url);
+                conexion.Ejecutar();
+                int count = (int)conexion.Lector[0];
+                return count > 0;
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+                
+                return false;
+            }
+            finally
+            {
+                // Cerrar la conexión
+                conexion.cerrarConexion();
+            }
+        }
+
+
+
+
+
+
+
 
     }
 }

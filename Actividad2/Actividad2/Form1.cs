@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Logica;
 using Entidades;
 using Logica.Logica;
+using System.Security.Policy;
 
 
 namespace Actividad2
@@ -19,6 +20,9 @@ namespace Actividad2
         private List<E_Articulo> articulos;
         private List<E_Imagen> imagenesArt = new List<E_Imagen>();
         private int indiceImg = 0;
+
+        public string UrlCargado { get; set; } = "https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png";
+        public E_Articulo ArticuloSeleccionadoPrincipal { get; set; }
         public frmPrincipal()
         {
             InitializeComponent();
@@ -31,6 +35,12 @@ namespace Actividad2
             dgvArticulos.Visible = false;
             btnAnterior.Visible = false;
             btnProximo.Visible = false;
+            pbxArt.Enabled = false;
+            AgregarIMG.Visible = false;
+            AgregarIMG.Enabled = false;
+
+
+
 
             CargarGrilla();
             cboCampo.Items.Add("Codigo");
@@ -66,6 +76,7 @@ namespace Actividad2
             dgvArt.Columns["Categoria"].Visible = false;
             dgvArt.Columns["ImagenUrl"].Visible = false;
 
+
         }
 
         public void CargarDetallesIndividual(int id)
@@ -77,6 +88,7 @@ namespace Actividad2
             lista.Add(art);
             dgvArt.Visible = false;
             dgvArticulos.DataSource = lista;
+            ArticuloSeleccionadoPrincipal = (E_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
 
             dgvArticulos.Columns["IdArt"].Visible = false;
             dgvArticulos.Columns["ImagenUrl"].Visible = false;
@@ -88,6 +100,9 @@ namespace Actividad2
             btnActualizar.Visible = false;
             lblFiltro.Visible = false;
             txtFiltro.Visible = false;
+            pbxArt.Enabled = true;
+            AgregarIMG.Visible = true;
+            AgregarIMG.Enabled = true;
 
         }
 
@@ -145,20 +160,25 @@ namespace Actividad2
         {
 
             imagenesArt = imagenes;
+            L_Imagen logica = new L_Imagen();
+
 
             if (imagenesArt == null || imagenesArt.Count == 0)
             {
                 pbxArt.Load("https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png");
-                return;
+                
+
             }
 
             try
             {
                 pbxArt.Load(imagenesArt[indiceImg].ImagenUrl);
+                UrlCargado = imagenesArt[indiceImg].ImagenUrl;
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine("Error al cargar la imagen: " + ex.Message);
                 pbxArt.Load("https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png");
             }
         }
@@ -182,6 +202,10 @@ namespace Actividad2
             tmiAcciones.Visible = true;
             lblFiltro.Visible = true;
             txtFiltro.Visible = true;
+            pbxArt.Enabled = false;
+            AgregarIMG.Visible = false;
+            AgregarIMG.Enabled = false;
+
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
@@ -321,6 +345,45 @@ namespace Actividad2
             frmAgregar agregar = new frmAgregar();
             agregar.Tipo = "Categoria";
             agregar.ShowDialog();
+        }
+
+        private void pbxArt_Click(object sender, EventArgs e)
+        {
+            L_Imagen logica = new L_Imagen();
+            DialogResult resultado = MessageBox.Show("¿Estás seguro de que querés eliminar esta imagen?",
+                                                     "Confirmar eliminación",
+                                                     MessageBoxButtons.YesNo,
+                                                     MessageBoxIcon.Question);
+            //OJO SI TIENEN LA MISMA IMAGEN
+            //SE BORRAN TODAS LAS IMAGENES IGUALES, AVERIGUAR LUEGO
+            if (resultado == DialogResult.Yes)
+            {
+
+
+                if(UrlCargado == "https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png")
+                {
+                    MessageBox.Show("No se puede eliminar la imagen por defecto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                //SE BORRAN LAS IMAGENES IGUALES SIEMPRE REVISAR
+                logica.EliminarFisico(UrlCargado);
+                MessageBox.Show("La imagen fue eliminada.", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnVolver.PerformClick();
+
+            }
+            else
+            {
+                // El usuario eligio no
+                MessageBox.Show("El producto no fue eliminado.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void AgregarIM_Click(object sender, EventArgs e)
+        {
+            AgregarImagen agregar = new AgregarImagen();
+            agregar.ArticuloSeleccionado = ArticuloSeleccionadoPrincipal;
+            agregar.ShowDialog();
+            btnVolver.PerformClick();
         }
     }
 }

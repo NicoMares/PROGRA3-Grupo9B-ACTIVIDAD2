@@ -1,10 +1,10 @@
 use master
 go
-create database CATALOGO_P3_DB
+create database WANNIMA
 go
-use CATALOGO_P3_DB
+use WANNIMA
 go
-USE CATALOGO_P3_DB
+USE WANNIMA
 GO
 
 SET ANSI_NULLS ON
