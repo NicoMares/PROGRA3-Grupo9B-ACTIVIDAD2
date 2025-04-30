@@ -54,7 +54,7 @@ namespace Logica.Logica
 
                 try
                 {
-                    conexion.Consulta("insert into CATEGORIAS (Descripcion) values (@Descipcion)");
+                    conexion.Consulta("insert into CATEGORIAS (Descripcion) values (@Descripcion)");
                     
                     conexion.SetParametros("@Descripcion", categoria.Descripcion);
 
